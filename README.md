@@ -29,3 +29,4 @@ Se você usa o php do xampp ou de outro server deverá usar o caminho do mesmo, 
 
 Executando assim o sistema estará rodando no [link local da aplicação](http://localhost:8080/home) localizado em localhost na porta default 8080:
 
+![Sistema de notícias CI4](https://github.com/netoxhoppus/ci4-blog-noticias/blob/master/public/Images/sistemanews.gif)
