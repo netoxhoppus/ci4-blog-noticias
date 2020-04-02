@@ -2,7 +2,7 @@
 
 ## Projeto didático
 
-Esse projeto foi iniciado com a função didática de apredizado sobre a nova versão do framework Codeigniter, a versão 4
+Esse projeto foi iniciado com a função didática sobre a nova versão do framework Codeigniter, a versão 4.
 Todos os arquivos estão hospedados no [repositório do projeto](https://github.com/netoxhoppus/ci4-blog-noticias).
 
 
