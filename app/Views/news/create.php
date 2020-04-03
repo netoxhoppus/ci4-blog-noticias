@@ -6,13 +6,17 @@
 
 <div class="form-group">
 
-            <label for="Nome">Título </label>
-            <input type="input" name="title" class="input-group-text">
 
-            <label for="texto">Texto </label>
-    <textarea name="body" class="input-group-text"></textarea>
+	<label for="Nome">Título </label>
+	<input type="input" name="title" class="input-group-text">
 
-            <button type="submit" class="btn-group btn-success" >Salvar</button>
+	<label for="texto">Texto </label>
+	<textarea name="body" class="input-group-text"></textarea>
+	<script>
+		CKEDITOR.replace( 'body' );
+	</script>
+
+	<button type="submit" class="btn-group btn-success" >Salvar</button>
  </div>
 
 <?php form_close(); ?>

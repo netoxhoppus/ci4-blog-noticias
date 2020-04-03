@@ -12,4 +12,23 @@ class NewsModel extends Model{
         }
         return $this->asArray()->where(['slug' => $slug])->first();
     }
+
+    public function store($id = null, $data = null) {
+        if ($data) {
+            if ($id) {
+                //aqui vai editar
+                if ($this->update($data)) {//aprender isso ainda
+                    return true;
+                }
+            } else {
+                //aqui vai inserir
+                if ($this->save($data)) {
+                    return true;
+                }
+                return false;
+            }
+        } else {//se nao tiver dados
+             return false;
+        }
+    }
 }

@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="<?= base_url('/css/bootstrap.css/') ?>">
 	<!-- <link rel="stylesheet" href="assets/header-fixed.css"> -->
 	<link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+	<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
 </head>
 
