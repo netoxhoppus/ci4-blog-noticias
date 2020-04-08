@@ -3,7 +3,7 @@
     <div class="list-group">
 
         <a href="/news/create/">
-            <button class="btn-primary">Criar notícia</button>
+            <button class="btn btn-primary">Criar notícia</button>
         </a>
 
     </div>
@@ -23,7 +23,7 @@
                         <p>
                             <a href="<?= '/news/'.$news_item['slug'] ?>">Ver</a>
                             <label class="col-form-label" >|</label>
-                            <a href="<?= '/news/editar/'.$news_item['id'] ?>">Editar</a>
+                            <a href="<?= '/news/create/'.$news_item['id'] ?>">Editar</a>
                             <label class="col-form-label" >|</label>
                             <a href="<?= '/news/deletar/'.$news_item['id'] ?>">Deletar</a>
 
@@ -36,8 +36,8 @@
 
 <?php else : ?>
 
-        <h3>No News</h3>
+        <h3>[Nenhuma notícia cadastrada]</h3>
 
-        <p>Unable to find any news for you.</p>
+        <p> <?php //echo anchor('news/', 'Ir para a página de notícias. >>')?></p>
 
 <?php endif ?>
