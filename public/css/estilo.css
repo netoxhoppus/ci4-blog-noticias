@@ -1,3 +1,21 @@
+#corpo {
+/ / background-color: #b3b7bb;
+}
+
+#img_session {
+    max-width: 30px;
+
+
+}
+
+#caixa_img_session {
+    max-width: 30px;
+
+    align-items: center;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
 /*HEADER INICIO*/
 
 .header-fixed {
@@ -108,6 +126,7 @@ body.fixed .header-fixed .header-limiter nav {
         padding: 20px 0;
         height: 75px;
     }
+
     .header-fixed .header-limiter h1 {
         float: none;
         margin: -8px 0 10px;
@@ -115,24 +134,25 @@ body.fixed .header-fixed .header-limiter nav {
         font-size: 24px;
         line-height: 1;
     }
+
     .header-fixed .header-limiter nav {
         line-height: 1;
         float: none;
     }
+
     .header-fixed .header-limiter nav a {
         font-size: 13px;
     }
+
     body.fixed .header-fixed {
         display: none;
     }
 }
 
-
 /*HEADER FIM*/
 
 
 /*FOOTER INICIO*/
-
 .footer {
     position: fixed;
     left: 0;
@@ -142,6 +162,5 @@ body.fixed .header-fixed .header-limiter nav {
     color: white;
     text-align: center;
 }
-
 
 /*FOOTER FIM*/

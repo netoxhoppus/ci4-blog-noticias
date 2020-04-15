@@ -1,55 +1,99 @@
 <?php
+
 namespace App\Controllers;
 
-use App\Models\NewsModel;
+use App\Models\NoticiasModel;
 use CodeIgniter\Controller;
 
-class News extends Controller {
+class Noticias extends Controller {
 
-    public function index() {
+    protected $model;
+    protected $sessao;
 
-        $model = new NewsModel();
-        $data = [
-            'news' => $model->getNews(),
-            'title' => 'Notícias arquivadas',
-        ];
-        echo view('templates/header', $data);
-        echo view('pages/overview', $data);
-        echo view('templates/footer');
+    public function __construct() {
+        $this->model = new NoticiasModel();
+        $this->sessao = new Usuario();
     }
 
-    public function view($slug = null) {
+    public function index() {
+        if (!$this->sessao->checkSession()) {
+            $this->sessao->login();
+            return;
+        }
+            $data = [
+                'news' => $this->model->getNews(),
+                'title' => 'Notícias arquivadas',
+            ];
+            echo view('templates/header', $data);
+            echo view('pages/overview', $data);
+            echo view('templates/footer');
+        }
 
-        $model = new NewsModel();
-        $data['news'] = $model->getNews($slug);
+
+    public function ver($slug = null) {
+
+        $data['news'] = $this->model->getNews($slug);
         if (empty($data['news'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the news item: ' . $slug);
         }
 
         $data['title'] = $data['news']['title'];
         echo view('templates/header', $data);
-        echo view('news/view', $data);
+        echo view('noticias/ver', $data);
         echo view('templates/footer');
     }
 
-    public function create() {
-        $model = new NewsModel();
-        helper('form');echo view('templates/header', $data = ['title' => 'Criar notícia']);
+    public function criar() {
+
+        helper('form');
+        echo view('templates/header', $data = ['title' => 'Criar notícia']);
         if (!$this->validate([
             'title' => 'required|min_length[3]|max_length[255]',
             'body' => 'required'
         ])) {
-            echo view('news/create');
+            echo view('noticias/criar');
         } else {
-            $model->store([
+            $data = [
+                'id' => $this->request->getVar('id'),
                 'title' => $this->request->getVar('title'),
                 'slug' => url_title($this->slugify($this->request->getVar('title')), "-", false),
                 'body' => $this->request->getVar('body')
-            ]);
-            echo view('news/success');
+            ];
+            $this->model->store($data);
+            if ($data['id']) {
+                echo view('noticias/success', $data = ['acao' => 'editada',
+                    'title' => 'Sucesso']);
+            } else {
+                echo view('noticias/success', $data = ['acao' => 'criada']);
+            }
         }
         echo view('templates/footer');
     }
+
+    public function editar($id = null) {
+        $new = $this->model->find($id);
+        helper('form');
+        echo view('templates/header', $new = [
+            'new' => $new,
+            'title' => 'Editar Notícia'
+        ]);
+        echo view('noticias/criar');
+        echo view('templates/footer');
+    }
+
+
+    public function excluir($id = null) {
+
+        if ($this->model->apagar($id)) {
+            echo view('templates/header', $data = ['title' => 'Sucesso']);
+            echo view('noticias/delete/sucesso_exclusao');
+        } else {
+            echo view('templates/header', $data = ['title' => 'Falhou']);
+            echo view('noticias/delete/erro_exclusao');
+        }
+        echo view('templates/footer');
+    }
+
 
     function slugify($string) {
         $string = preg_replace('/[\t\n]/', ' ', $string);
@@ -68,7 +112,6 @@ class News extends Controller {
             'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u',
             'û' => 'u', 'ý' => 'y', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y', 'Ŕ' => 'R',
             'ŕ' => 'r', '/' => '-', ' ' => '-', '.' => '-',);
-
         $string = strtr($string, $list);
         $string = preg_replace('/-{2,}/', '-', $string);
         $string = strtolower($string);

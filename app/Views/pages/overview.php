@@ -1,31 +1,41 @@
-<h2><?= $title?></h2>
+<h2><?= $title ?></h2>
+<br>
+<div class="list-group">
 
-    <div class="list-group">
+    <a href="<?php echo base_url('/noticias/criar/') ?>">
+        <button class="btn btn-primary">Criar notícia</button>
+    </a>
 
-        <a href="/news/create/">
-            <button class="btn btn-primary">Criar notícia</button>
-        </a>
-
-    </div>
+</div>
+<br>
 
 <?php if (!empty($news) && is_array($news)) : ?>
 
     <div class="table">
         <table class="table table-striped table-hover table-sm">
-            <tr>
+            <tr class="table table-active">
                 <th>Título</th>
-                <th>Notícia</th>
+                <th>Ação</th>
             </tr>
-            <?php foreach ($news as $news_item):  ?>
+            <?php foreach ($news as $news_item): ?>
                 <tr>
-                    <td> <?php  echo $news_item['title'] ?></td>
+                    <td> <?php echo $news_item['title'] ?></td>
+
                     <td>
                         <p>
-                            <a href="<?= '/news/'.$news_item['slug'] ?>">Ver</a>
-                            <label class="col-form-label" >|</label>
-                            <a href="<?= '/news/create/'.$news_item['id'] ?>">Editar</a>
-                            <label class="col-form-label" >|</label>
-                            <a href="<?= '/news/deletar/'.$news_item['id'] ?>">Deletar</a>
+
+
+                            <a href="<?php echo base_url().'/noticias/'. $news_item['slug'] ?>">
+                                <button class="btn col-2 btn-primary btn-sm">Abrir</button>
+                            </a>
+
+                            <a href="<?php echo base_url().'/noticias/editar/'. $news_item['id'] ?>">
+                                <button class="btn col-2 btn-warning btn-sm">Editar</button>
+                            </a>
+
+                            <a href="<?php echo base_url().'/noticias/excluir/'. $news_item['id'] ?>">
+                                <button class="btn col-2 btn-danger btn-sm" onclick="confirm_delete()">Deletar</button>
+                            </a>
 
                         </p>
                     </td>
@@ -36,8 +46,8 @@
 
 <?php else : ?>
 
-        <h3>[Nenhuma notícia cadastrada]</h3>
+    <h3>[Nenhuma notícia cadastrada]</h3>
 
-        <p> <?php //echo anchor('news/', 'Ir para a página de notícias. >>')?></p>
+    <p> <?php //echo anchor('news/', 'Ir para a página de notícias. >>')?></p>
 
 <?php endif ?>
