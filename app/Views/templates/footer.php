@@ -1,4 +1,6 @@
+<?php if (isset($_SESSION['id'])) { ?>
 </div> <!-- fim do container -->
+<?php } ?>
 <footer class="footer">Netoox <em>&copy; 2019</em></footer>
 <!-- Scripts-->
 

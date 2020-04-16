@@ -1,8 +1,3 @@
-<?php
-
-use App\Controllers\Usuario;
-
-?>
 <!DOCTYPE html>
 <html>
 
@@ -25,7 +20,8 @@ use App\Controllers\Usuario;
     <!-- JAVASCRIPT-->
 </head>
 
-<body id="corpo">
+<body id="corpo"
+">
 
 <header class="header-fixed">
 
@@ -34,30 +30,37 @@ use App\Controllers\Usuario;
         <h1><a href="<?= base_url('home') ?>">Sistema de <span>Notícias</span></a></h1>
 
         <nav>
-            <a href="<?= base_url('home') ?>">Home</a>
-            <a href="#" class="selected">Blog</a>
-            <a href="<?= base_url('noticias') ?>">Visão Geral</a>
+
+            <a href="<?= base_url('home') ?>">HomeBlog</a>
             <a href="<?= base_url('sobre') ?>">About</a>
             <a href="#">Faq</a>
             <a href="<?= base_url('contato') ?>">Contact</a>
-            <a href="<?php echo base_url('usuario/login') ?>">
-                <div class="card bg-transparent" id="caixa_img_session">
-                    <?php
-                    $sessao = new Usuario();
+            <a href="<?= base_url('noticias') ?>">Área restrita</a>
+            <!--<a href="<? /*= base_url('usuario/logout') */ ?>" onclick="confirma("sair")">-->
+            <?php if (isset($_SESSION['id'])) { ?>
 
-                    if (isset($sessao)) {
-                        $img = '/imgs/session_open.png';
-                    } else if (!isset($sessao)){
-                        $img = '/imgs/session_close.png';
-                    }
-                    helper('html');
-                    echo img(['src' => base_url($img),
-                        'id' => 'img_session']);
-                    ?>
-                    <!--<img src="<?php /*echo base_url('/imgs/session_open.png') */ ?>" id="img_session">-->
+                <?php
+                helper('html');
+                $onclick = array('onclick' => "return confirm('Confirma saída?')");
+                echo anchor(base_url('usuario/logout'), 'Logout ' .
+                    '<small>' . '[' . $_SESSION['nome'] . ']' . '</small>'
+                    . img(['src' => base_url('/imgs/session_open.png'),
+                        'id' => 'img_session']), $onclick);
+            } else {
+                helper('html');
+                ?>
+                <?php
 
-                </div>
-            </a>
+                echo anchor(base_url('usuario/login'), 'Login ' .
+                    img(['src' => base_url('/imgs/session_close.png'),
+                        'id' => 'img_session'
+                    ])); ?>
+                <script onload="tiraFundo()">
+
+                </script>
+
+            <?php }
+            ?>
         </nav>
 
     </div>
@@ -67,7 +70,9 @@ use App\Controllers\Usuario;
 
 <!-- You need this element to prevent the content of the page from jumping up -->
 <div class="header-fixed-placeholder"></div>
-<div class="container">
+<?php if (isset($_SESSION['id'])) { ?>
+<div class="container card bg-white" id="div_principal_home">
+    <?php } ?>
 
 
     <!-- The content of your page would go here. -->

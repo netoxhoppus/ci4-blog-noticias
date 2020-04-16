@@ -30,6 +30,13 @@ class Usuario extends Controller {
     }
 
     public function login() {
+        if ($this->checkSession()) {
+            echo view('templates/header', $data = ['title' => 'Bem vindo']);
+            echo 'Bem vindo ' . $_SESSION['nome'] . '<br><br>';
+            echo anchor(base_url('noticias'), '<< Área restrita');
+            echo view('templates/footer');
+            return;
+        }
 
         helper('form');
         $error = '';
@@ -48,7 +55,9 @@ class Usuario extends Controller {
             } else if (is_array($result = $this->getUsuario($username, md5(sha1($password))))) {
                 // login válido
                 $this->setSession($result);//carrega os dados do usuário pra sessão
+                //dd($_SESSION);
                 return redirect()->to(base_url('noticias'));
+
             } else {
                 $error = 'Login inválido';
             }
@@ -59,6 +68,7 @@ class Usuario extends Controller {
         echo view('templates/header', $data);
         echo view('usuario/login');
         echo view('templates/footer');
+
 
     }
 
@@ -81,9 +91,18 @@ class Usuario extends Controller {
     public function checkSession() {
         return $this->sessao->has('id');
     }
-    public function logout(){
-         $this->sessao->destroy();
-        return redirect()->to(base_url('home'));
+
+    public function logout() {
+        $this->controlaAcesso();
+        $this->sessao->destroy();
+        return redirect()->to(base_url('usuario/login'));
+    }
+
+    public function controlaAcesso() {
+        if (!$this->checkSession()) {
+             $this->login();
+            return;
+        }
     }
 
 }

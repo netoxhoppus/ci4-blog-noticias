@@ -1,16 +1,19 @@
 #corpo {
 / / background-color: #b3b7bb;
 }
+#div_principal_home{
+    margin-top: 10px;
+    box-shadow: 3px 5px #5a6268;
+    min-height: 510px;
+    width: 900px;
+}
 
 #img_session {
     max-width: 30px;
-
-
 }
 
 #caixa_img_session {
     max-width: 30px;
-
     align-items: center;
     margin-left: 10px;
     margin-bottom: 20px;

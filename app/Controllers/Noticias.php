@@ -20,18 +20,17 @@ class Noticias extends Controller {
             $this->sessao->login();
             return;
         }
-            $data = [
-                'news' => $this->model->getNews(),
-                'title' => 'Notícias arquivadas',
-            ];
-            echo view('templates/header', $data);
-            echo view('pages/overview', $data);
-            echo view('templates/footer');
-        }
+        $data = [
+            'news' => $this->model->getNews(),
+            'title' => 'Notícias arquivadas',
+        ];
+        echo view('templates/header', $data);
+        echo view('pages/overview', $data);
+        echo view('templates/footer');
+    }
 
 
     public function ver($slug = null) {
-
         $data['news'] = $this->model->getNews($slug);
         if (empty($data['news'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the news item: ' . $slug);
@@ -44,7 +43,10 @@ class Noticias extends Controller {
     }
 
     public function criar() {
-
+        if (!$this->sessao->checkSession()) {
+            $this->sessao->login();
+            return;
+        }
         helper('form');
         echo view('templates/header', $data = ['title' => 'Criar notícia']);
         if (!$this->validate([
@@ -71,6 +73,10 @@ class Noticias extends Controller {
     }
 
     public function editar($id = null) {
+        if (!$this->sessao->checkSession()) {
+            $this->sessao->login();
+            return;
+        }
         $new = $this->model->find($id);
         helper('form');
         echo view('templates/header', $new = [
@@ -83,7 +89,7 @@ class Noticias extends Controller {
 
 
     public function excluir($id = null) {
-
+        $this->sessao->controlaAcesso();
         if ($this->model->apagar($id)) {
             echo view('templates/header', $data = ['title' => 'Sucesso']);
             echo view('noticias/delete/sucesso_exclusao');
@@ -115,7 +121,14 @@ class Noticias extends Controller {
         $string = strtr($string, $list);
         $string = preg_replace('/-{2,}/', '-', $string);
         $string = strtolower($string);
-
         return $string;
+    }
+
+    private function controlaAcesso() {
+        if (!$this->sessao->checkSession()) {
+            $this->sessao->login();
+            return;
+        }
+
     }
 }

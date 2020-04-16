@@ -1,11 +1,17 @@
-$('#erro_mensagem').show().delay(2000).fadeOut('slow')
+$('#erro_mensagem').show().delay(2000).fadeOut('slow');
 
+function tiraFundo() {
+    /*document.getElementById('div_principal_home').style.display('block');*/
+    /*$("#div_principal_home").css("display", "none")*/
 
-function confirm_delete() {
-    if (confirm('Deseja excluir esse registro?')) {
-        return true;
+    document.getElementById('div_principal_home').style.visibility = 'hidden';
+}
+
+function confirma(valor) {
+    if (!confirm('Confirma ' + valor + '?')) {
+        return false;
     }
-    return false;
+    return true;
 }
 
 
