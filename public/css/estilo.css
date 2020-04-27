@@ -1,7 +1,8 @@
 #corpo {
 / / background-color: #b3b7bb;
 }
-#div_principal_home{
+
+#div_principal_home {
     margin-top: 10px;
     box-shadow: 3px 5px #5a6268;
     min-height: 510px;
@@ -19,8 +20,9 @@
     margin-bottom: 20px;
 }
 
-/*HEADER INICIO*/
 
+
+/*HEADER INICIO*/
 .header-fixed {
     background-color: #292c2f;
     box-shadow: 0 1px 1px #ccc;
@@ -151,7 +153,6 @@ body.fixed .header-fixed .header-limiter nav {
         display: none;
     }
 }
-
 /*HEADER FIM*/
 
 
@@ -165,5 +166,18 @@ body.fixed .header-fixed .header-limiter nav {
     color: white;
     text-align: center;
 }
-
 /*FOOTER FIM*/
+
+
+/*PAGER INICIO*/
+#pager{
+    position: relative;
+}
+#pager .active {
+    background-color: #494f54;
+}
+
+#pager a {
+    padding: 4px;
+}
+/*PAGER FIM*/

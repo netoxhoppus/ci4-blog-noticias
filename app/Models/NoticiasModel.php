@@ -8,11 +8,15 @@ class NoticiasModel extends Model {
 
     protected $table = 'news';
     protected $allowedFields = ['title', 'body', 'slug'];
-    protected $primaryKey = 'id';
+
+    public function buscar($valor = null) {
+        $builder = $this->db->table('news');
+        return $builder->like('title', $valor)->orLike('body', $valor)->get()->getResult('array');
+    }
 
     public function getNews($slug = false) {
         if ($slug === false) {
-            return $this->findAll();
+            return $this->paginate(5);
         }
         return $this->asArray()->where(['slug' => $slug])->first();
     }
@@ -21,7 +25,7 @@ class NoticiasModel extends Model {
         return $this->save($data);
     }
 
-    public function apagar($id = null){
+    public function apagar($id = null) {
         return $this->delete($id);
     }
 

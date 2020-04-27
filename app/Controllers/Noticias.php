@@ -5,17 +5,21 @@ namespace App\Controllers;
 use App\Models\NoticiasModel;
 use CodeIgniter\Controller;
 
+
 class Noticias extends Controller {
 
     protected $model;
     protected $sessao;
 
     public function __construct() {
+        helper('form');
         $this->model = new NoticiasModel();
         $this->sessao = new Usuario();
+
     }
 
     public function index() {
+
         if (!$this->sessao->checkSession()) {
             $this->sessao->login();
             return;
@@ -23,15 +27,19 @@ class Noticias extends Controller {
         $data = [
             'news' => $this->model->getNews(),
             'title' => 'Notícias arquivadas',
+            'pager' => $this->model->pager
         ];
         echo view('templates/header', $data);
         echo view('pages/overview', $data);
         echo view('templates/footer');
     }
 
-
     public function ver($slug = null) {
-        $data['news'] = $this->model->getNews($slug);
+
+        $data = [
+            'news' => $this->model->getNews($slug)
+        ];
+
         if (empty($data['news'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the news item: ' . $slug);
         }
@@ -42,12 +50,28 @@ class Noticias extends Controller {
         echo view('templates/footer');
     }
 
+    public function buscar() {
+        $valor = $this->request->getVar('valor');
+
+        if (!$valor) {
+            redirect($this->index());
+        } else {
+            $data = [
+                'news' => $this->model->buscar($valor),
+                'title' => 'Resultados encontrados',
+                'pager' => $this->model->pager
+            ];
+            echo view('templates/header', $data);
+            echo view('pages/overview', $data);
+            echo view('templates/footer');
+        }
+    }
+
     public function criar() {
         if (!$this->sessao->checkSession()) {
             $this->sessao->login();
             return;
         }
-        helper('form');
         echo view('templates/header', $data = ['title' => 'Criar notícia']);
         if (!$this->validate([
             'title' => 'required|min_length[3]|max_length[255]',
@@ -72,13 +96,13 @@ class Noticias extends Controller {
         echo view('templates/footer');
     }
 
-    public function editar($id = null) {
+    public
+    function editar($id = null) {
         if (!$this->sessao->checkSession()) {
             $this->sessao->login();
             return;
         }
         $new = $this->model->find($id);
-        helper('form');
         echo view('templates/header', $new = [
             'new' => $new,
             'title' => 'Editar Notícia'
@@ -88,7 +112,8 @@ class Noticias extends Controller {
     }
 
 
-    public function excluir($id = null) {
+    public
+    function excluir($id = null) {
         $this->sessao->controlaAcesso();
         if ($this->model->apagar($id)) {
             echo view('templates/header', $data = ['title' => 'Sucesso']);
@@ -124,7 +149,8 @@ class Noticias extends Controller {
         return $string;
     }
 
-    private function controlaAcesso() {
+    private
+    function controlaAcesso() {
         if (!$this->sessao->checkSession()) {
             $this->sessao->login();
             return;

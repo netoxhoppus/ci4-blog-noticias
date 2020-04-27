@@ -1,4 +1,4 @@
-$('#erro_mensagem').show().delay(2000).fadeOut('slow');
+/*$('#erro_mensagem').show().delay(2000).fadeOut('slow');*/
 
 function tiraFundo() {
     /*document.getElementById('div_principal_home').style.display('block');*/
@@ -15,7 +15,8 @@ function confirma(valor) {
 }
 
 
-ClassicEditor.create(document.querySelector('#editor'))
+ClassicEditor
+    .create(document.querySelector('#editor'))
     .then(editor => {
         console.log(editor);
     })

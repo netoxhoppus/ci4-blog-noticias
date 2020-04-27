@@ -33,6 +33,9 @@ $routes->setAutoRoute(true);
 
 //$routes->get('news/excluir/(:segment)','News::excluir/$1');
 $routes->match(['get', 'post'], 'noticias/criar', 'Noticias::criar');
+//$routes->get('noticias/buscar', 'Noticias::buscar');
+$routes->match(['get', 'post'], 'noticias/buscar', 'Noticias::buscar');
+
 $routes->get('usuario', 'Usuario::index');
 $routes->get('usuario/login', 'Usuario::login');
 $routes->get('usuario/logout', 'Usuario::logout');
@@ -41,6 +44,7 @@ $routes->get('noticias', 'Noticias::index');
 $routes->get('noticias/(:segment)', 'Noticias::ver/$1');
 $routes->get('noticias/excluir/(:segment)', 'Noticias::excluir/$1');
 $routes->get('noticias/editar/(:segment)', 'Noticias::editar/$1');
+
 
 $routes->get('(:any)', 'Pages::showme/$1');
 
