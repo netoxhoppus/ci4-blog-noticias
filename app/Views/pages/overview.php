@@ -15,8 +15,11 @@
             <div class="input-group " id="input_busca">
 
 
-                <i class="fade fa-search" aria-hidden="true"></i>
-                <input name="valor" class=" form-control w-75" type="text" placeholder="Search" aria-label="Search">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <div class="active-cyan-3 active-cyan-4 ml-3">
+                <input name="valor" class="form-control w-100" type="text" placeholder="Search" aria-label="Search">
+                </div>
+
                 <button class="btn list-inline btn-outline-primary" type="submit">buscar</button>
             </div>
         </form>
@@ -64,25 +67,15 @@
     <div class="float-right pagination" id="pager">
         <?php if ($pager) : ?>
         <?php $pager->setPath('noticias'); ?>
-        <?= $pager->links() ?>
+        <?php echo $pager->links('default','bootstrap_pagination') ?>
         <?php endif ?>
     </div>
 
 
 </div>
 
-
 <?php else : ?>
-
     <h3>[Nenhuma notícia cadastrada]</h3>
-
-    <p> <?php //echo anchor('news/', 'Ir para a página de notícias. >>')?></p>
-
 <?php endif ?>
-<script>
 
-    $(document).ready(function () {
-        $('#datatable').DataTable();
-    });
-</script>
 

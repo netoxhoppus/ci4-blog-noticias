@@ -168,16 +168,10 @@ body.fixed .header-fixed .header-limiter nav {
 }
 /*FOOTER FIM*/
 
-
-/*PAGER INICIO*/
-#pager{
-    position: relative;
+/*miniatura novo user*/
+#prev{
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    max-width: 200px;
 }
-#pager .active {
-    background-color: #494f54;
-}
-
-#pager a {
-    padding: 4px;
-}
-/*PAGER FIM*/
+/*fim miniatura novo user*/

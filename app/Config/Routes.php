@@ -37,6 +37,8 @@ $routes->match(['get', 'post'], 'noticias/criar', 'Noticias::criar');
 $routes->match(['get', 'post'], 'noticias/buscar', 'Noticias::buscar');
 
 $routes->get('usuario', 'Usuario::index');
+$routes->get('usuario/listarusuarios', 'Usuario::listarUsuarios');
+$routes->get('usuario/criarusuario', 'Usuario::criarUsuario');
 $routes->get('usuario/login', 'Usuario::login');
 $routes->get('usuario/logout', 'Usuario::logout');
 $routes->get('teste', 'Teste::index');
@@ -44,8 +46,6 @@ $routes->get('noticias', 'Noticias::index');
 $routes->get('noticias/(:segment)', 'Noticias::ver/$1');
 $routes->get('noticias/excluir/(:segment)', 'Noticias::excluir/$1');
 $routes->get('noticias/editar/(:segment)', 'Noticias::editar/$1');
-
-
 $routes->get('(:any)', 'Pages::showme/$1');
 
 

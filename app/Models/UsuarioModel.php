@@ -12,7 +12,7 @@ class UsuarioModel extends Model {
 
     public function getUser($name = null, $pass = null) {
         $data = [
-            'name' => $name,
+            'username' => $name,
             'password' => $pass
         ];
         return $this->asArray()->where($data)->first();

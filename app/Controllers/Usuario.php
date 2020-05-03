@@ -11,7 +11,6 @@ class Usuario extends Controller {
     private $sessao;
 
     public function __construct() {
-        // helper('session');
         $this->sessao = session();
         $this->model = new UsuarioModel();
     }
@@ -26,6 +25,33 @@ class Usuario extends Controller {
         echo view('templates/header', $data);
         echo view('usuario/login');
         echo view('templates/footer');
+
+
+    }
+
+    public function listarUsuarios() {
+        $data = [
+            'title' => 'Usuários'
+        ];
+
+
+
+        echo view('templates/header', $data);
+        echo view('usuario/usuarios');
+        echo view('templates/footer');
+    }
+
+
+    public function criarUsuario() {
+        helper('form');
+        $data = [
+            'title' => 'Novo usuário'
+        ];
+
+
+        echo view('templates/header', $data);
+        echo view('usuario/novousuario');
+        echo view('templates/footer');;
 
     }
 
@@ -54,10 +80,10 @@ class Usuario extends Controller {
                 $error = 'Erro no preenchimento dos campos.';
             } else if (is_array($result = $this->getUsuario($username, md5(sha1($password))))) {
                 // login válido
+                $params = $result['id'];
+                $this->model->db->query('UPDATE users SET last_login = NOW() WHERE id = ?', $params);//atualiza o ultimo login
                 $this->setSession($result);//carrega os dados do usuário pra sessão
-                //dd($_SESSION);
                 return redirect()->to(base_url('noticias'));
-
             } else {
                 $error = 'Login inválido';
             }
@@ -100,7 +126,7 @@ class Usuario extends Controller {
 
     public function controlaAcesso() {
         if (!$this->checkSession()) {
-             $this->login();
+            $this->login();
             return;
         }
     }

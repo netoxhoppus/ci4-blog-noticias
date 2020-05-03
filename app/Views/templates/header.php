@@ -5,24 +5,25 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title><?= $title ?></title>
+
+    <link href="<?php echo base_url('css/sidebar/main.css') ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url('/css/googleapis.css/') ?>">
     <link rel="stylesheet" href="<?php echo base_url('/css/login.css/') ?>">
     <link rel="stylesheet" href="<?php echo base_url('/css/estilo.css/') ?>">
     <link rel="stylesheet" href="<?php echo base_url('/css/bootstrap.css/') ?>">
     <link rel="stylesheet" href="<?php echo base_url('/css/bootstrap.min.css/') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('/css/datatable.css/') ?>">
-    <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <!-- JAVASCRIPT-->
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
     <!-- JAVASCRIPT-->
 </head>
 
-<body id="corpo"
-
-">
+<body id="corpo">
 
 <header class="header-fixed">
 
@@ -70,10 +71,15 @@
 </header>
 
 <!-- You need this element to prevent the content of the page from jumping up -->
-<div class="header-fixed-placeholder"></div>
 <?php if (isset($_SESSION['id'])) { ?>
-<div class="container card bg-white" id="div_principal_home">
+<?php echo view('templates/sidebar');?>
+
+<div class="container card bg-white  mt-3 " id="div_principal_home">
+
+
     <?php } ?>
 
 
-    <!-- The content of your page would go here. -->
+
+
+        <!-- The content of your page would go here. -->
