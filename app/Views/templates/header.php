@@ -23,7 +23,7 @@
     <!-- JAVASCRIPT-->
 </head>
 
-<body id="corpo">
+<body id="corpo" >
 
 <header class="header-fixed">
 
@@ -71,13 +71,12 @@
 </header>
 
 <!-- You need this element to prevent the content of the page from jumping up -->
-<?php if (isset($_SESSION['id'])) { ?>
-<?php echo view('templates/sidebar');?>
+
 
 <div class="container card bg-white  mt-3 " id="div_principal_home">
 
 
-    <?php } ?>
+
 
 
 

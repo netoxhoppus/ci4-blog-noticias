@@ -1,69 +1,3 @@
-/*$('#erro_mensagem').show().delay(2000).fadeOut('slow');*/
-$(function () { /*cria miniatura da imagem*/
-    $('#upload').change(function () {
-        const file = $(this)[0].files[0]
-        const fielder = new FileReader()
-        fielder.onloadend = function () {
-            $('#prev').attr('src', fielder.result)
-        }
-        fielder.readAsDataURL(file)
-    })
-});
-
-
-
-
-
-(function($) {
-
-    "use strict";
-
-    var fullHeight = function() {
-
-        $('.js-fullheight').css('height', $(window).height());
-        $(window).resize(function(){
-            $('.js-fullheight').css('height', $(window).height());
-        });
-
-    };
-    fullHeight();
-
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-
-})(jQuery);
-function tiraFundo() {
-    /*document.getElementById('div_principal_home').style.display('block');*/
-    /*$("#div_principal_home").css("display", "none")*/
-
-    document.getElementById('div_principal_home').style.visibility = 'hidden';
-}
-
-
-ClassicEditor
-    .create(document.querySelector('#editor'))
-    .then(editor => {
-        console.log(editor);
-    })
-    .catch(error => {
-        console.error(error);
-    });
-
-function modal() {
-    $('#exampleModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Botão que acionou o modal
-        var titulo = button.data('titulo') // Extrai informação dos atributos data-*
-        var corpo = button.data('corpo')
-        var modal = $(this)
-        modal.find('.modal-header input').val(titulo)
-        modal.find('.modal-body textarea').val(corpo)
-    })
-
-}
-
-
-/*sidebar funcoes*/
 jQuery(function ($) {
 
     // Dropdown menu
@@ -112,7 +46,7 @@ jQuery(function ($) {
         $(".page-wrapper").toggleClass("toggled");
     });
 
-    //switch between themes
+    //switch between themes 
     var themes = "default-theme legacy-theme chiller-theme ice-theme cool-theme light-theme";
     $('[data-theme]').click(function () {
         $('[data-theme]').removeClass("selected");
@@ -153,4 +87,3 @@ jQuery(function ($) {
 
     }
 });
-/*fim sidebar funcoes*/

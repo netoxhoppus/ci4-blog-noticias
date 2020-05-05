@@ -36,9 +36,9 @@ class Usuario extends Controller {
 
 
 
-        echo view('templates/header', $data);
+        echo view('templates/d_header', $data);
         echo view('usuario/usuarios');
-        echo view('templates/footer');
+        echo view('templates/d_footer');
     }
 
 

@@ -1,6 +1,9 @@
 #corpo {
 / / background-color: #b3b7bb;
 }
+body p{
+    text-align: justify;
+}
 
 #div_principal_home {
     margin-top: 10px;

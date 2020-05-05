@@ -17,7 +17,7 @@
 
                 <i class="fas fa-search" aria-hidden="true"></i>
                 <div class="active-cyan-3 active-cyan-4 ml-3">
-                <input name="valor" class="form-control w-100" type="text" placeholder="Search" aria-label="Search">
+                    <input name="valor" class="form-control w-100" type="text" placeholder="Search" aria-label="Search">
                 </div>
 
                 <button class="btn list-inline btn-outline-primary" type="submit">buscar</button>
@@ -31,48 +31,48 @@
 
 <?php if (!empty($news) && is_array($news)) : ?>
 
-<div class="table">
-    <table id="datatable" class="table table-striped table-hover table-sm">
+    <div class="table">
+        <table id="datatable" class="table table-striped table-hover table-sm">
 
-        <tr class="table table-active">
-            <th>Título</th>
-            <th>Ação</th>
-        </tr>
-
-        <?php foreach ($news as $news_item): ?>
-            <tr>
-                <td> <?php echo $news_item['title'] ?></td>
-
-                <td>
-                    <p>
-
-                        <a href="<?php echo base_url() . '/noticias/' . $news_item['slug'] ?>">
-                            <button class="btn col-2 btn-primary btn-sm">Abrir</button>
-                        </a>
-
-                        <a href="<?php echo base_url() . '/noticias/editar/' . $news_item['id'] ?>">
-                            <button class="btn col-2 btn-warning btn-sm">Editar</button>
-                        </a>
-
-                        <a href="<?php echo base_url() . '/noticias/excluir/' . $news_item['id'] ?>">
-                            <button class="btn col-2 btn-danger btn-sm" onclick="confirm_delete()">Deletar</button>
-                        </a>
-
-
-                    </p>
-                </td>
+            <tr class="table table-active">
+                <th>Título</th>
+                <th>Ação</th>
             </tr>
-        <?php endforeach; ?>
-    </table>
-    <div class="float-right pagination" id="pager">
-        <?php if ($pager) : ?>
-        <?php $pager->setPath('noticias'); ?>
-        <?php echo $pager->links('default','bootstrap_pagination') ?>
-        <?php endif ?>
+
+            <?php foreach ($news as $news_item): ?>
+                <tr>
+                    <td> <?php echo $news_item['title'] ?></td>
+
+                    <td>
+                        <p>
+
+                            <a href="<?php echo base_url() . '/noticias/' . $news_item['slug'] ?>">
+                                <button class="btn col-2 btn-primary btn-sm">Abrir</button>
+                            </a>
+
+                            <a href="<?php echo base_url() . '/noticias/editar/' . $news_item['id'] ?>">
+                                <button class="btn col-2 btn-warning btn-sm">Editar</button>
+                            </a>
+
+                            <a href="<?php echo base_url() . '/noticias/excluir/' . $news_item['id'] ?>">
+                                <button class="btn col-2 btn-danger btn-sm" onclick="confirm_delete()">Deletar</button>
+                            </a>
+
+
+                        </p>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+        <div class="float-right pagination" id="pager">
+            <?php if ($pager) : ?>
+                <?php $pager->setPath('noticias'); ?>
+                <?php echo $pager->links('default', 'bootstrap_pagination') ?>
+            <?php endif ?>
+        </div>
+
+
     </div>
-
-
-</div>
 
 <?php else : ?>
     <h3>[Nenhuma notícia cadastrada]</h3>

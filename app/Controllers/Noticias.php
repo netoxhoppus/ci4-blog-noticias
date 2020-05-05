@@ -29,9 +29,11 @@ class Noticias extends Controller {
             'title' => 'Notícias arquivadas',
             'pager' => $this->model->pager
         ];
-        echo view('templates/header', $data);
-        echo view('pages/overview', $data);
-        echo view('templates/footer');
+        //echo view('templates/header', $data);
+        echo view('templates/d_header', $data);
+        echo view('pages/overview');
+        echo view('templates/d_footer');
+        //echo view('templates/footer');
     }
 
     public function ver($slug = null) {
@@ -61,9 +63,9 @@ class Noticias extends Controller {
                 'title' => 'Resultados encontrados',
                 'pager' => $this->model->pager
             ];
-            echo view('templates/header', $data);
+            echo view('templates/d_header', $data);
             echo view('pages/overview', $data);
-            echo view('templates/footer');
+            echo view('templates/d_footer');
         }
     }
 
@@ -72,7 +74,7 @@ class Noticias extends Controller {
             $this->sessao->login();
             return;
         }
-        echo view('templates/header', $data = ['title' => 'Criar notícia']);
+        echo view('templates/d_header', $data = ['title' => 'Criar notícia']);
         if (!$this->validate([
             'title' => 'required|min_length[3]|max_length[255]',
             'body' => 'required'
@@ -93,36 +95,38 @@ class Noticias extends Controller {
                 echo view('noticias/success', $data = ['acao' => 'criada']);
             }
         }
-        echo view('templates/footer');
+        echo view('templates/d_footer');
+
     }
 
-    public
-    function editar($id = null) {
+    public function editar($id = null) {
         if (!$this->sessao->checkSession()) {
             $this->sessao->login();
             return;
         }
         $new = $this->model->find($id);
-        echo view('templates/header', $new = [
+        echo view('templates/d_header', $new = [
             'new' => $new,
             'title' => 'Editar Notícia'
         ]);
         echo view('noticias/criar');
-        echo view('templates/footer');
+        echo view('templates/d_footer');
     }
 
 
-    public
-    function excluir($id = null) {
-        $this->sessao->controlaAcesso();
+    public function excluir($id = null) {
+        if (!$this->sessao->checkSession()) {
+            $this->sessao->login();
+            return;
+        }
         if ($this->model->apagar($id)) {
-            echo view('templates/header', $data = ['title' => 'Sucesso']);
+            echo view('templates/d_header', $data = ['title' => 'Sucesso']);
             echo view('noticias/delete/sucesso_exclusao');
         } else {
-            echo view('templates/header', $data = ['title' => 'Falhou']);
+            echo view('templates/d_header', $data = ['title' => 'Falhou']);
             echo view('noticias/delete/erro_exclusao');
         }
-        echo view('templates/footer');
+        echo view('templates/d_footer');
     }
 
 

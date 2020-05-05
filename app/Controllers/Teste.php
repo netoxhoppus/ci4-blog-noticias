@@ -16,9 +16,10 @@ class Teste extends Controller {
     public function index() {
         $data = ['title' => 'teste'];
         helper('form');
-        //echo view('templates/header', $data);
-        echo view('usuario/login');
-        //echo view('templates/footer');
+        echo view('templates/header', $data);
+        echo view('teste');
+
+        echo view('templates/footer');
     }
 
 }
