@@ -58,7 +58,7 @@ class Noticias extends Controller {
             redirect($this->index());
         } else {
             $data = [
-                'news' => $this->model->buscar($valor,5),
+                'news' => $this->model->buscar($valor,6),
                 'title' => 'Resultados encontrados',
                 'pager' => $this->model->pager
             ];

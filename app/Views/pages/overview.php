@@ -15,7 +15,8 @@
             <div class="input-group " id="input_busca">
 
 
-                <i class="fas fa-search" aria-hidden="true"></i>
+                <i class="fas fa-search mt-2" aria-hidden="true"></i>
+
                 <div class="active-cyan-3 active-cyan-4 ml-3">
                     <input name="valor" class="form-control w-100" type="text" placeholder="Search" aria-label="Search">
                 </div>

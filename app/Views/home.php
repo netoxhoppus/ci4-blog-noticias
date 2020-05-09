@@ -50,11 +50,11 @@
         </div>
 
     </div>
-    <div  class="col-xl">
+        <!--div apoiadores futuramente-->
+<!--    <div  style="border: 0.1px; border-style: outset" class="col-xl">
         <div style="background: #000000" class="flex-md-row mt-1">
             teste
         </div>
-
-    </div>
+    </div>-->
 </div>
 
