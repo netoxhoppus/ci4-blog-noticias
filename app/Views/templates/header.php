@@ -11,7 +11,6 @@
 
     <link href="<?php echo base_url('css/sidebar/main.css') ?>" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('/css/googleapis.css/') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('/css/login.css/') ?>">
     <link rel="stylesheet" href="<?php echo base_url('/css/estilo.css/') ?>">
     <link rel="stylesheet" href="<?php echo base_url('/css/bootstrap.css/') ?>">
     <link rel="stylesheet" href="<?php echo base_url('/css/bootstrap.min.css/') ?>">

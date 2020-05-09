@@ -1,11 +1,12 @@
 #corpo {
-/ / background-color: #b3b7bb;
+    background:url(https://hdqwalls.com/download/material-design-4k-2048x1152.jpg) fixed;
 }
 body p{
     text-align: justify;
 }
 
 #div_principal_home {
+
     margin-top: 10px;
     box-shadow: 3px 5px #5a6268;
     min-height: 510px;

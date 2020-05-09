@@ -11,7 +11,7 @@
 
         <!-- Search form -->
         <form class="form-inline d-flex list-group-horizontal justify-content-end md-form form-sm mt-0"
-              action="<?php echo base_url('noticias/buscar') ?>" method="post">
+              action="<?php echo base_url('noticias/buscar') ?>" method="get">
             <div class="input-group " id="input_busca">
 
 
@@ -41,21 +41,21 @@
 
             <?php foreach ($news as $news_item): ?>
                 <tr>
-                    <td> <?php echo $news_item['title'] ?></td>
+                    <td> <?php echo substr($news_item['title'],0,30) ?></td>
 
                     <td>
                         <p>
 
                             <a href="<?php echo base_url() . '/noticias/' . $news_item['slug'] ?>">
-                                <button class="btn col-2 btn-primary btn-sm">Abrir</button>
+                                <button class="btn  col-2 btn-primary btn-sm"><i class="far fa-eye"></i></button>
                             </a>
 
                             <a href="<?php echo base_url() . '/noticias/editar/' . $news_item['id'] ?>">
-                                <button class="btn col-2 btn-warning btn-sm">Editar</button>
+                                <button class="btn col-2 btn-warning btn-sm"><i class="far fa-edit"></i></button>
                             </a>
 
                             <a href="<?php echo base_url() . '/noticias/excluir/' . $news_item['id'] ?>">
-                                <button class="btn col-2 btn-danger btn-sm" onclick="confirm_delete()">Deletar</button>
+                                <button class="btn col-2 btn-danger btn-sm" onclick="confirm_delete()"><i class="far fa-trash-alt"></i></button>
                             </a>
 
 
@@ -64,7 +64,7 @@
                 </tr>
             <?php endforeach; ?>
         </table>
-        <div class="float-right pagination" id="pager">
+        <div class="float-right row" id="pager">
             <?php if ($pager) : ?>
                 <?php $pager->setPath('noticias'); ?>
                 <?php echo $pager->links('default', 'bootstrap_pagination') ?>

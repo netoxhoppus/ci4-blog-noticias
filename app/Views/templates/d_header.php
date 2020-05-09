@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
-<!--    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
--->    <script src="https://cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
+    <!--    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    -->
+    <script src="https://cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
 
 
     <!-- using local links -->
@@ -102,113 +103,8 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span class="menu-text">E-commerce</span>
-                            <span class="badge badge-pill badge-danger">3</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">Products
 
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">Orders</a>
-                                </li>
-                                <li>
-                                    <a href="#">Credit cart</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="far fa-gem"></i>
-                            <span class="menu-text">Components</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">General</a>
-                                </li>
-                                <li>
-                                    <a href="#">Panels</a>
-                                </li>
-                                <li>
-                                    <a href="#">Tables</a>
-                                </li>
-                                <li>
-                                    <a href="#">Icons</a>
-                                </li>
-                                <li>
-                                    <a href="#">Forms</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-chart-line"></i>
-                            <span class="menu-text">Charts</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">Pie chart</a>
-                                </li>
-                                <li>
-                                    <a href="#">Line chart</a>
-                                </li>
-                                <li>
-                                    <a href="#">Bar chart</a>
-                                </li>
-                                <li>
-                                    <a href="#">Histogram</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-globe"></i>
-                            <span class="menu-text">Maps</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">Google maps</a>
-                                </li>
-                                <li>
-                                    <a href="#">Open street map</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="header-menu">
-                        <span>Extra</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span class="menu-text">Documentation</span>
-                            <span class="badge badge-pill badge-primary">Beta</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-calendar"></i>
-                            <span class="menu-text">Calendar</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-folder"></i>
-                            <span class="menu-text">Examples</span>
-                        </a>
-                    </li>
+
                 </ul>
             </div>
             <!-- sidebar-menu  -->
@@ -352,7 +248,7 @@
             </div>
 
             <div>
-                <a data-toggle="modal" data-target="#exampleModal" >
+                <a data-toggle="modal" data-target="#exampleModal">
                     <i class="fa fa-power-off"></i>
                 </a>
             </div>
@@ -368,7 +264,7 @@
 
         <!--inicio painel-->
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom" style="font-size: 15px" >
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom" style="font-size: 15px">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -377,7 +273,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="<?php echo base_url('home') ?>">Ir para o site <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -401,17 +297,22 @@
         <!--fim-->
 
         <!--Botoes toggle e pin    -->
-        <div class="row">
+        <div class="row float-left mt-2">
             <div class=" col-md-12">
                 <a id="toggle-sidebar" class="btn btn-outline-secondary p-1 btn-sm rounded-0" href="#">
                     <span class="fa fa-angle-left mr-1"></span>
                 </a><br>
-                <a id="pin-sidebar" class="btn btn-outline-secondary p-1 btn-sm rounded-0" href="#">
+               <!-- <a id="pin-sidebar" class="btn btn-outline-secondary p-1 btn-sm rounded-0" href="#">
                     <span class="fa fa-thumbtack"></span>
-                </a>
+                </a>-->
             </div>
         </div>
         <!--FIM botoes toggle e pin    -->
 
         <!--Container principal -->
-        <div class="container card bg-white ml-lg-4 mt-1 " style="font-size: 15px" id="div_principal">
+
+        <div class="container" id="containerPrincipal">
+            <div class="row ml-5" >
+                <div class="col-sm-2"  >
+                </div>
+                <div class="container card bg-white ml-lg-4 mt-4 " style="font-size: 16px" id="div_principal">

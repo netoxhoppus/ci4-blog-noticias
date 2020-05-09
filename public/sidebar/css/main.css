@@ -1,10 +1,15 @@
+#containerPrincipal{
+    padding-top: 2%;
+}
+
 #div_principal {
     margin-top: 10px;
     box-shadow: 3px 5px #5a6268;
     min-height: 510px;
     width: 900px;
 }
-body *{
+
+body * {
     text-align: justify;
 }
 

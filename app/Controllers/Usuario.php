@@ -57,10 +57,10 @@ class Usuario extends Controller {
 
     public function login() {
         if ($this->checkSession()) {
-            echo view('templates/header', $data = ['title' => 'Bem vindo']);
+            echo view('templates/d_header', $data = ['title' => 'Bem vindo']);
             echo 'Bem vindo ' . $_SESSION['nome'] . '<br><br>';
             echo anchor(base_url('noticias'), '<< Área restrita');
-            echo view('templates/footer');
+            echo view('templates/d_footer');
             return;
         }
 
@@ -91,9 +91,9 @@ class Usuario extends Controller {
         if ($error != '') {//ao fim checa se houve erro
             $data['error'] = $error;
         }
-        echo view('templates/header', $data);
+        echo view('templates/login_header', $data);
         echo view('usuario/login');
-        echo view('templates/footer');
+        echo view('templates/login_footer');
 
 
     }
@@ -121,7 +121,7 @@ class Usuario extends Controller {
     public function logout() {
         $this->controlaAcesso();
         $this->sessao->destroy();
-        return redirect()->to(base_url('usuario/login'));
+        return redirect()->to(base_url('home'));
     }
 
     public function controlaAcesso() {

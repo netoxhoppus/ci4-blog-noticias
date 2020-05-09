@@ -19,13 +19,13 @@ class Noticias extends Controller {
     }
 
     public function index() {
-
         if (!$this->sessao->checkSession()) {
             $this->sessao->login();
             return;
         }
         $data = [
-            'news' => $this->model->getNews(),
+
+            'news' => $this->model->get()->paginate(5),
             'title' => 'Notícias arquivadas',
             'pager' => $this->model->pager
         ];
@@ -54,12 +54,11 @@ class Noticias extends Controller {
 
     public function buscar() {
         $valor = $this->request->getVar('valor');
-
         if (!$valor) {
             redirect($this->index());
         } else {
             $data = [
-                'news' => $this->model->buscar($valor),
+                'news' => $this->model->buscar($valor,5),
                 'title' => 'Resultados encontrados',
                 'pager' => $this->model->pager
             ];
@@ -81,17 +80,21 @@ class Noticias extends Controller {
         ])) {
             echo view('noticias/criar');
         } else {
+            date_default_timezone_set('America/Sao_Paulo');
             $data = [
                 'id' => $this->request->getVar('id'),
                 'title' => $this->request->getVar('title'),
                 'slug' => url_title($this->slugify($this->request->getVar('title')), "-", false),
-                'body' => $this->request->getVar('body')
+                'body' => $this->request->getVar('body'),
+                'data' => date('Y-m-d H:i:s')
             ];
+            //dd($data);
             $this->model->store($data);
             if ($data['id']) {
                 echo view('noticias/success', $data = ['acao' => 'editada',
                     'title' => 'Sucesso']);
             } else {
+                $this->model->db->query('UPDATE news SET data = NOW() WHERE slug = ?', $data['slug']);
                 echo view('noticias/success', $data = ['acao' => 'criada']);
             }
         }

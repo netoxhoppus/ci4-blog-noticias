@@ -22,9 +22,8 @@ class Pages extends Controller {
         }
         $data['title'] = ucfirst($page); // Capitalize the first letter
 
-       // echo view('templates/header', $data);
-        echo view('pages/' . $page, $data);                echo view('modais/modal_confirm');
-
-        // echo view('templates/footer', $data);
+       // echo view('templates/t2_header', $data);
+        echo view('pages/' . $page, $data);
+        //echo view('templates/t2_footer', $data);
     }
 }

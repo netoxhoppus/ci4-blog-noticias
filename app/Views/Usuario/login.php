@@ -1,5 +1,5 @@
 <!--                  -->
-<div class="login-wrap mt-3">
+<div class="login-wrap mt-lg-5">
     <div class="login-html">
 
         <?php echo form_open(base_url('usuario/login')); ?>
