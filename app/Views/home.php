@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-md-10 col-lg-8">
 
-        <div class="clearfix float-right">
+        <div  class="clearfix float-right">
             <?php echo $pager->links('default', 'bootstrap_pagination') ?>
         </div>
 
@@ -39,7 +39,6 @@
                 </div>
                 <hr>
             <?php endforeach; ?>
-            <?php //dd($newsPrev[3]['id']);//echo $pager->links('default', 'bootstrap_pagination') ?>
 
         <?php else : ?>
             <h3 class="mt-4">Nenhum resultado </h3><i class="far fa-frown"></i>

@@ -2,17 +2,18 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\Controller;
-use \CodeIgniter\Config\Services;
 use App\Models\UsuarioModel;
+use \CodeIgniter\Config\Services;
+use CodeIgniter\Controller;
 
 class Usuario extends Controller {
-    private $model;
+
     private $sessao;
+    private $usuarioModel;
 
     public function __construct() {
         $this->sessao = session();
-        $this->model = new UsuarioModel();
+        $this->usuarioModel = new UsuarioModel();
     }
 
     public function index() {
@@ -59,7 +60,7 @@ class Usuario extends Controller {
         if ($this->checkSession()) {
             echo view('templates/d_header', $data = ['title' => 'Bem vindo']);
             echo 'Bem vindo ' . $_SESSION['nome'] . '<br><br>';
-            echo anchor(base_url('noticias'), '<< Área restrita');
+            echo anchor(base_url('noticias'), '<< Área de notícias');
             echo view('templates/d_footer');
             return;
         }
@@ -81,9 +82,9 @@ class Usuario extends Controller {
             } else if (is_array($result = $this->getUsuario($username, md5(sha1($password))))) {
                 // login válido
                 $params = $result['id'];
-                $this->model->db->query('UPDATE users SET last_login = NOW() WHERE id = ?', $params);//atualiza o ultimo login
+                $this->usuarioModel->db->query('UPDATE users SET last_login = NOW() WHERE id = ?', $params);//atualiza o ultimo login
                 $this->setSession($result);//carrega os dados do usuário pra sessão
-                return redirect()->to(base_url('noticias'));
+                return redirect()->to(base_url('home'));
             } else {
                 $error = 'Login inválido';
             }
@@ -99,7 +100,7 @@ class Usuario extends Controller {
     }
 
     public function getUsuario($username = null, $password = null) {
-        $results = $this->model->getUser($username, $password);
+        $results = $this->usuarioModel->getUser($username, $password);
         if (!$results) {
             return false;
         }

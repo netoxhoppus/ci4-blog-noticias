@@ -3,19 +3,22 @@
 namespace App\Controllers;
 
 use App\Models\NoticiasModel;
+use CodeIgniter\Controller;
 
-class Home extends BaseController {
-    protected $model;
+class Home extends Controller {
+    protected $noticiasModel;
+    protected $sessao;
 
     public function __construct() {
-        $this->model = new NoticiasModel();
+        $this->noticiasModel = new NoticiasModel();
+        $this->sessao = session();
     }
 
     public function index() {
         $data = [
             'title' => 'Home',
-            'newsPrev' => $this->model->get()->paginate(4),
-            'pager' => $this->model->pager
+            'newsPrev' => $this->noticiasModel->get()->paginate(4),
+            'pager' => $this->noticiasModel->pager
         ];
         //dd($data);
         echo view('templates/t2_header', $data);
@@ -30,9 +33,9 @@ class Home extends BaseController {
             redirect($this->index());
         } else {
             $data = [
-                'newsPrev' => $this->model->buscar($valor,4),
+                'newsPrev' => $this->noticiasModel->buscar($valor,4),
                 'title' => 'Busca ['.$valor.']',
-                'pager' => $this->model->pager
+                'pager' => $this->noticiasModel->pager
             ];
             echo view('templates/t2_header', $data);
             echo view('home');

@@ -273,9 +273,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?php echo base_url('home') ?>">Ir para o site <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="<?php echo base_url('home') ?>"><i class="fas fa-globe-americas"></i>&nbspIr para o site <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+<!--                    <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -289,7 +289,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </nav>

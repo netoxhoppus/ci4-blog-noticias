@@ -5,7 +5,12 @@
 
 $pager->setSurroundCount(2);
 ?>
-
+<style> /*altera o link da pagina atual para negrito*/
+    .active a {
+        font-weight: bolder;
+        color: #007bff;
+    }
+</style>
 <nav aria-label="<?= lang('Pager.pageNavigation') ?>">
     <ul class="pagination">
         <?php if ($pager->hasPrevious()) : ?>

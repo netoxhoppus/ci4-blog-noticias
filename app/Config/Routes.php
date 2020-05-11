@@ -32,25 +32,26 @@ $routes->setAutoRoute(true);
 //$routes->get('/', 'Home::index');
 
 //$routes->get('news/excluir/(:segment)','News::excluir/$1');
+
+
+$routes->get('/', 'Home::index');
+
 $routes->match(['get', 'post'], 'noticias/criar', 'Noticias::criar');
-//$routes->get('noticias/buscar', 'Noticias::buscar');
 $routes->match(['get', 'post'], 'noticias/buscar', 'Noticias::buscar');
 $routes->match(['get', 'post'], 'buscar', 'Home::buscar');
-$routes->get('usuario', 'Usuario::index');
-$routes->get('/', 'Home::index');
-$routes->get('/oldsposts/(:segment)', 'Home::oldsPosts/$1');
 
+$routes->get('usuario', 'Usuario::index');
+$routes->get('usuario/logout', 'Usuario::logout');
 $routes->get('usuario/listarusuarios', 'Usuario::listarUsuarios');
 $routes->get('usuario/criarusuario', 'Usuario::criarUsuario');
 $routes->get('login', 'Usuario::login');
-$routes->get('usuario/logout', 'Usuario::logout');
-$routes->get('teste', 'Teste::index');
+
 $routes->get('noticias', 'Noticias::index');
-/*$routes->get('home/buscarnahome', 'Noticias::buscarNaHome');*/
 $routes->get('noticias/(:segment)', 'Noticias::ver/$1');
 $routes->get('noticias/excluir/(:segment)', 'Noticias::excluir/$1');
 $routes->get('noticias/editar/(:segment)', 'Noticias::editar/$1');
-//$routes->get('(:any)', 'Pages::showme/$1');
+
+$routes->get('teste', 'Teste::index');
 
 
 /**

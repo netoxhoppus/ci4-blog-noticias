@@ -66,10 +66,7 @@
             <?php endforeach; ?>
         </table>
         <div class="float-right row" id="pager">
-            <?php if ($pager) : ?>
-                <?php $pager->setPath('noticias'); ?>
                 <?php echo $pager->links('default', 'bootstrap_pagination') ?>
-            <?php endif ?>
         </div>
 
 

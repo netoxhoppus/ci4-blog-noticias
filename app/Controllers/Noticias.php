@@ -3,31 +3,34 @@
 namespace App\Controllers;
 
 use App\Models\NoticiasModel;
+use App\Models\UsuarioModel;
 use CodeIgniter\Controller;
-
 
 class Noticias extends Controller {
 
-    protected $model;
-    protected $sessao;
+    private $obj_usuario;
+    private $sessao;
+    private $usuarioModel;
+    protected $noticiasModel;
 
     public function __construct() {
         helper('form');
-        $this->model = new NoticiasModel();
-        $this->sessao = new Usuario();
-
+        $this->obj_usuario = new Usuario();
+        $this->usuarioModel = new UsuarioModel();
+        $this->noticiasModel = new NoticiasModel();
+        $this->sessao = \Config\Services::session();
     }
 
     public function index() {
-        if (!$this->sessao->checkSession()) {
-            $this->sessao->login();
+        if (!$this->obj_usuario->checkSession()) {
+            $this->obj_usuario->login();
             return;
         }
         $data = [
 
-            'news' => $this->model->get()->paginate(5),
+            'news' => $this->noticiasModel->get()->paginate(5),
             'title' => 'Notícias arquivadas',
-            'pager' => $this->model->pager
+            'pager' => $this->noticiasModel->pager
         ];
         //echo view('templates/header', $data);
         echo view('templates/d_header', $data);
@@ -39,7 +42,7 @@ class Noticias extends Controller {
     public function ver($slug = null) {
 
         $data = [
-            'news' => $this->model->getNews($slug)
+            'news' => $this->noticiasModel->getNews($slug)
         ];
 
         if (empty($data['news'])) {
@@ -58,9 +61,9 @@ class Noticias extends Controller {
             redirect($this->index());
         } else {
             $data = [
-                'news' => $this->model->buscar($valor,6),
+                'news' => $this->noticiasModel->buscar($valor, 5),
                 'title' => 'Resultados encontrados',
-                'pager' => $this->model->pager
+                'pager' => $this->noticiasModel->pager
             ];
             echo view('templates/d_header', $data);
             echo view('pages/overview', $data);
@@ -69,7 +72,7 @@ class Noticias extends Controller {
     }
 
     public function criar() {
-        if (!$this->sessao->checkSession()) {
+        if (!$this->obj_usuario->checkSession()) {
             $this->sessao->login();
             return;
         }
@@ -89,12 +92,12 @@ class Noticias extends Controller {
                 'data' => date('Y-m-d H:i:s')
             ];
             //dd($data);
-            $this->model->store($data);
+            $this->noticiasModel->store($data);
             if ($data['id']) {
                 echo view('noticias/success', $data = ['acao' => 'editada',
                     'title' => 'Sucesso']);
             } else {
-                $this->model->db->query('UPDATE news SET data = NOW() WHERE slug = ?', $data['slug']);
+                $this->noticiasModel->db->query('UPDATE news SET data = NOW() WHERE slug = ?', $data['slug']);
                 echo view('noticias/success', $data = ['acao' => 'criada']);
             }
         }
@@ -103,11 +106,11 @@ class Noticias extends Controller {
     }
 
     public function editar($id = null) {
-        if (!$this->sessao->checkSession()) {
-            $this->sessao->login();
+        if (!$this->obj_usuario->checkSession()) {
+            $this->obj_usuario->login();
             return;
         }
-        $new = $this->model->find($id);
+        $new = $this->noticiasModel->find($id);
         echo view('templates/d_header', $new = [
             'new' => $new,
             'title' => 'Editar Notícia'
@@ -118,11 +121,11 @@ class Noticias extends Controller {
 
 
     public function excluir($id = null) {
-        if (!$this->sessao->checkSession()) {
-            $this->sessao->login();
+        if (!$this->obj_usuario->checkSession()) {
+            $this->obj_usuario->login();
             return;
         }
-        if ($this->model->apagar($id)) {
+        if ($this->noticiasModel->apagar($id)) {
             echo view('templates/d_header', $data = ['title' => 'Sucesso']);
             echo view('noticias/delete/sucesso_exclusao');
         } else {
@@ -156,10 +159,9 @@ class Noticias extends Controller {
         return $string;
     }
 
-    private
-    function controlaAcesso() {
-        if (!$this->sessao->checkSession()) {
-            $this->sessao->login();
+    private function controlaAcesso() {
+        if (!$this->obj_usuario->checkSession()) {
+            $this->obj_usuario->login();
             return;
         }
 
