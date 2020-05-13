@@ -15,10 +15,12 @@ class Noticias extends Controller {
 
     public function __construct() {
         helper('form');
+        helper('session');
+        date_default_timezone_set('America/Sao_Paulo');
         $this->obj_usuario = new Usuario();
         $this->usuarioModel = new UsuarioModel();
         $this->noticiasModel = new NoticiasModel();
-        $this->sessao = \Config\Services::session();
+        $this->sessao = session();
     }
 
     public function index() {
@@ -26,8 +28,9 @@ class Noticias extends Controller {
             $this->obj_usuario->login();
             return;
         }
-        $data = [
 
+
+        $data = [
             'news' => $this->noticiasModel->get()->paginate(5),
             'title' => 'Notícias arquivadas',
             'pager' => $this->noticiasModel->pager
@@ -48,7 +51,6 @@ class Noticias extends Controller {
         if (empty($data['news'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the news item: ' . $slug);
         }
-
         $data['title'] = $data['news']['title'];
         echo view('templates/header', $data);
         echo view('noticias/ver', $data);
@@ -73,36 +75,51 @@ class Noticias extends Controller {
 
     public function criar() {
         if (!$this->obj_usuario->checkSession()) {
-            $this->sessao->login();
+            $this->obj_usuario->login();
             return;
         }
-        echo view('templates/d_header', $data = ['title' => 'Criar notícia']);
-        if (!$this->validate([
-            'title' => 'required|min_length[3]|max_length[255]',
-            'body' => 'required'
-        ])) {
-            echo view('noticias/criar');
-        } else {
-            date_default_timezone_set('America/Sao_Paulo');
+        $data = [
+            'title' => 'Notícia'
+        ];
+        echo view('templates/d_header', $data);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $img = new Imagem();
             $data = [
-                'id' => $this->request->getVar('id'),
+                'id_news' => $this->request->getVar('id_news'),
                 'title' => $this->request->getVar('title'),
+                'subtitle' => $this->request->getVar('subtitle'),
                 'slug' => url_title($this->slugify($this->request->getVar('title')), "-", false),
                 'body' => $this->request->getVar('body'),
-                'data' => date('Y-m-d H:i:s')
+                'data_criacao' => date('Y-m-d H:i:s'),
+                'id_autor' => $_SESSION['id_user'],
+                'img_capa ' => $img->uploadImg('/imgs/noticias/capa/', 'capa'),
+
             ];
-            //dd($data);
-            $this->noticiasModel->store($data);
-            if ($data['id']) {
-                echo view('noticias/success', $data = ['acao' => 'editada',
-                    'title' => 'Sucesso']);
+            if (!$this->noticiasModel->store($data)) {
+                $data = [
+                    'errors' => $this->noticiasModel->errors(),
+                ];
+                $this->sessao->setFlashdata($data);
+                return redirect()->back()->withInput();
+
+            } else if ($data['id_news']) {
+                echo view('noticias/success', $data = ['acao' => 'Notícia editada']);
+                echo view('templates/d_footer');
+                return;
             } else {
-                $this->noticiasModel->db->query('UPDATE news SET data = NOW() WHERE slug = ?', $data['slug']);
-                echo view('noticias/success', $data = ['acao' => 'criada']);
+                echo view('noticias/success', $data = ['acao' => 'Notícia criada']);
+                echo view('templates/d_footer');
+                return;
             }
         }
+
+        echo view('noticias/criar', $data);
         echo view('templates/d_footer');
 
+    }
+
+    public function getAutor($id_autor = null) {
+        return $this->noticiasModel->getAutor($id_autor);
     }
 
     public function editar($id = null) {

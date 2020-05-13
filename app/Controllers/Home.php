@@ -14,7 +14,11 @@ class Home extends Controller {
         $this->sessao = session();
     }
 
+    //--------------------------------------------------------------------
+
     public function index() {
+        $not = new Noticias();
+        //dd($not->getAutor(1));
         $data = [
             'title' => 'Home',
             'newsPrev' => $this->noticiasModel->get()->paginate(4),
@@ -26,6 +30,7 @@ class Home extends Controller {
         echo view('templates/t2_footer');
     }
 
+    //--------------------------------------------------------------------
 
     public function buscar() {
         $valor = $this->request->getVar('valor');
@@ -33,8 +38,8 @@ class Home extends Controller {
             redirect($this->index());
         } else {
             $data = [
-                'newsPrev' => $this->noticiasModel->buscar($valor,4),
-                'title' => 'Busca ['.$valor.']',
+                'newsPrev' => $this->noticiasModel->buscar($valor, 4),
+                'title' => 'Busca [' . $valor . ']',
                 'pager' => $this->noticiasModel->pager
             ];
             echo view('templates/t2_header', $data);

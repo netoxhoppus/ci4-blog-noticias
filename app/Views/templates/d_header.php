@@ -46,7 +46,9 @@
             <!-- sidebar-header  -->
             <div class="sidebar-item sidebar-header d-flex flex-nowrap">
                 <div class="user-pic">
-                    <img class="img-responsive img-rounded" src="<?php echo base_url('sidebar/img/user.jpg') ?>"
+                    <?php echo isset($new['title']) ? $new['title'] : old('title') ?>
+
+                    <img  class="img-responsive img-rounded" src="<?php echo base_url($_SESSION['avatar'])?>"
                          alt="User picture">
                 </div>
                 <div class="user-info">
@@ -104,146 +106,61 @@
                         </div>
                     </li>
 
+                    <!--    Usuarios  -->
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fas fa-users"></i>
+                            <span class="menu-text">Usuários</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li class="sidebar-item">
+                                    <a href="<?php echo base_url('#') ?>">
+                                        <i class="fas fa-user-alt"></i>
+                                        <span class="menu-text">Meu perfil</span>
+                                    </a>
+                                </li>
 
+                                <li class="sidebar-item">
+                                    <a href="<?php echo base_url('usuario/listarusuarios') ?>">
+                                        <i class="fa fa-list-ol"></i>
+                                        <span class="menu-text">Listar</span>
+                                    </a>
+                                </li>
+
+                                <li class="sidebar-item">
+                                    <a href="<?php echo base_url('usuario/criarusuario') ?>">
+                                        <i class="fa fa-plus-circle"></i>
+                                        <span class="menu-text">Criar</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
             </div>
+            <!--    Usuarios  -->
+
+
             <!-- sidebar-menu  -->
         </div>
         <!-- sidebar-footer  -->
-        <div class="sidebar-footer">
+        <div class=" sidebar-footer">
             <div class="dropdown">
 
-                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-bell"></i>
-                    <span class="badge badge-pill badge-warning notification">3</span>
-                </a>
-                <div class="dropdown-menu notifications" aria-labelledby="dropdownMenuMessage">
-                    <div class="notifications-header">
-                        <i class="fa fa-bell"></i>
-                        Notifications
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                        <div class="notification-content">
-                            <div class="icon">
-                                <i class="fas fa-check text-success border border-success"></i>
-                            </div>
-                            <div class="content">
-                                <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. In totam explicabo
-                                </div>
-                                <div class="notification-time">
-                                    6 minutes ago
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <div class="notification-content">
-                            <div class="icon">
-                                <i class="fas fa-exclamation text-info border border-info"></i>
-                            </div>
-                            <div class="content">
-                                <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. In totam explicabo
-                                </div>
-                                <div class="notification-time">
-                                    Today
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <div class="notification-content">
-                            <div class="icon">
-                                <i class="fas fa-exclamation-triangle text-warning border border-warning"></i>
-                            </div>
-                            <div class="content">
-                                <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. In totam explicabo
-                                </div>
-                                <div class="notification-time">
-                                    Yesterday
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-center" href="#">View all notifications</a>
-                </div>
             </div>
             <div class="dropdown">
-                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-envelope"></i>
-                    <span class="badge badge-pill badge-success notification">7</span>
-                </a>
-                <div class="dropdown-menu messages" aria-labelledby="dropdownMenuMessage">
-                    <div class="messages-header">
-                        <i class="fa fa-envelope"></i>
-                        Messages
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                        <div class="message-content">
-                            <div class="pic">
-                                <img src="<?php base_url('sidebar/img/user.jpg') ?>" alt="">
-                            </div>
-                            <div class="content">
-                                <div class="message-title">
-                                    <strong> Jhon doe</strong>
-                                </div>
-                                <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. In totam explicabo
-                                </div>
-                            </div>
-                        </div>
 
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <div class="message-content">
-                            <div class="pic">
-                                <img src="<?php base_url('sidebar/img/user.jpg') ?>" alt="">
-                            </div>
-                            <div class="content">
-                                <div class="message-title">
-                                    <strong> Jhon doe</strong>
-                                </div>
-                                <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. In totam explicabo
-                                </div>
-                            </div>
-                        </div>
-
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <div class="message-content">
-                            <div class="pic">
-                                <img src="<?php base_url('sidebar/img/user.jpg') ?>" alt="">
-                            </div>
-                            <div class="content">
-                                <div class="message-title">
-                                    <strong> Jhon doe</strong>
-                                </div>
-                                <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. In totam explicabo
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-center" href="#">View all messages</a>
-
-                </div>
             </div>
-            <div class="dropdown">
+            <div class="dropdown ">
                 <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-cog"></i>
                     <span class="badge-sonar"></span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuMessage">
-                    <a class="dropdown-item" href="#">My profile</a>
-                    <a class="dropdown-item" href="#">Help</a>
-                    <a class="dropdown-item" href="#">Setting</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-user-alt"></i>&nbspMeu perfil</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-hands-helping"></i>&nbspHelp</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-cog"></i>&nbspSetting</a>
                 </div>
             </div>
 
@@ -259,11 +176,11 @@
             </div>
         </div>
     </nav>
+
+
     <!-- page-content  -->
     <main class="page-content  small mt-0">
-
-        <!--inicio painel-->
-
+        <!--inicio painel superior-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom" style="font-size: 15px">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -273,23 +190,24 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?php echo base_url('home') ?>"><i class="fas fa-globe-americas"></i>&nbspIr para o site <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="<?php echo base_url('home') ?>"><i class="fas fa-globe-americas"></i>&nbspIr
+                            para o site <span class="sr-only">(current)</span></a>
                     </li>
-<!--                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>-->
+                    <!--                    <li class="nav-item">
+                                            <a class="nav-link" href="#">Link</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dropdown
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </li>-->
                 </ul>
             </div>
         </nav>
@@ -302,9 +220,6 @@
                 <a id="toggle-sidebar" class="btn btn-outline-secondary p-1 btn-sm rounded-0" href="#">
                     <span class="fa fa-angle-left mr-1"></span>
                 </a><br>
-               <!-- <a id="pin-sidebar" class="btn btn-outline-secondary p-1 btn-sm rounded-0" href="#">
-                    <span class="fa fa-thumbtack"></span>
-                </a>-->
             </div>
         </div>
         <!--FIM botoes toggle e pin    -->
@@ -312,7 +227,7 @@
         <!--Container principal -->
 
         <div class="container" id="containerPrincipal">
-            <div class="row ml-5" >
-                <div class="col-sm-2"  >
+            <div class="row ml-5">
+                <div class="col-sm-2">
                 </div>
                 <div class="container card bg-white ml-lg-4 mt-4 " style="font-size: 16px" id="div_principal">

@@ -1,4 +1,6 @@
 /*$('#erro_mensagem').show().delay(2000).fadeOut('slow');*/
+
+
 $(function () { /*cria miniatura da imagem*/
     $('#upload').change(function () {
         const file = $(this)[0].files[0]

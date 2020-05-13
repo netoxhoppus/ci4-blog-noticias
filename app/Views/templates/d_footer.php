@@ -20,7 +20,7 @@
 </script>
 <script src="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 <!-- using local scripts -->
-<script src="<?php echo base_url('sidebar/js/main.js') ?>"></script></body>
+<script src="<?php echo base_url('sidebar/js/main.js') ?>"></script>
 </body>
 
 </html>

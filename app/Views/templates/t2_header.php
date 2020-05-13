@@ -35,7 +35,7 @@
                                 class="fa fa-envelope"></i>&nbspFale conosco</a></li>
 
                 <!--  Área visivel quando está logado -->
-                <?php if (isset($_SESSION['id'])) {
+                <?php if (isset($_SESSION['id_user'])) {
                     echo view('pages/area_logado');
                  } else { ?>
                     <li class="nav-item" role="presentation">

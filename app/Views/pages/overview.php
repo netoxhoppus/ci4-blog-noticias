@@ -51,11 +51,11 @@
                                 <button class="btn  col-2 btn-primary btn-sm"><i class="far fa-eye"></i></button>
                             </a>
 
-                            <a href="<?php echo base_url() . '/noticias/editar/' . $news_item['id'] ?>">
+                            <a href="<?php echo base_url() . '/noticias/editar/' . $news_item['id_news'] ?>">
                                 <button class="btn col-2 btn-warning btn-sm"><i class="far fa-edit"></i></button>
                             </a>
 
-                            <a href="<?php echo base_url() . '/noticias/excluir/' . $news_item['id'] ?>">
+                            <a href="<?php echo base_url() . '/noticias/excluir/' . $news_item['id_news'] ?>">
                                 <button class="btn col-2 btn-danger btn-sm" onclick="confirm_delete()"><i class="far fa-trash-alt"></i></button>
                             </a>
 

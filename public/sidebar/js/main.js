@@ -1,3 +1,19 @@
+$(function () { /*cria miniatura da imagem*/
+    $('#upload').change(function () {
+        const file = $(this)[0].files[0]
+        const fielder = new FileReader()
+        fielder.onloadend = function () {
+            $('#prev').attr('src', fielder.result)
+        }
+        fielder.readAsDataURL(file)
+    })
+});
+
+$(".alert").delay(3000).fadeOut("slow", function () {
+    $(this).remove();
+});
+
+
 jQuery(function ($) {
 
     // Dropdown menu

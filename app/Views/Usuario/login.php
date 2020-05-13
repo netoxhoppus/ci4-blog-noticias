@@ -1,6 +1,16 @@
 <!--                  -->
+
+
 <div class="login-wrap mt-lg-5">
+
     <div class="login-html">
+        <?php if (isset($error)) { ?>
+            <div class="alert alert-danger small" role="alert">
+                <ul>
+                    <li><?= esc($error) ?></li>
+                </ul>
+            </div>
+        <?php } ?>
 
         <?php echo form_open(base_url('usuario/login')); ?>
 
@@ -27,11 +37,14 @@
                     <input id="user" type="text" class="input">
                 </div>
                 <div class="group">
-                    <input type="submit" class="button" value="Resetar Senha">
+                    <input type="button" class="button" value="Resetar Senha">
                 </div>
                 <div class="hr"></div>
+
             </div>
+
         </div>
+
 
         <?php echo form_close(); ?>
 
