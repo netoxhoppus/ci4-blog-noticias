@@ -20,14 +20,14 @@ class Home extends Controller {
         $not = new Noticias();
         //dd($not->getAutor(1));
         $data = [
-            'title' => 'Home',
+            'title' => 'Início',
             'newsPrev' => $this->noticiasModel->get()->paginate(4),
             'pager' => $this->noticiasModel->pager
         ];
         //dd($data);
-        echo view('templates/t2_header', $data);
+        echo view('templates/header', $data);
         echo view('home');
-        echo view('templates/t2_footer');
+        echo view('templates/footer');
     }
 
     //--------------------------------------------------------------------
@@ -40,11 +40,12 @@ class Home extends Controller {
             $data = [
                 'newsPrev' => $this->noticiasModel->buscar($valor, 4),
                 'title' => 'Busca [' . $valor . ']',
-                'pager' => $this->noticiasModel->pager
+                'pager' => $this->noticiasModel->pager,
+                'stringBusca' => 'Resultados da busca [' . $valor . ']'
             ];
-            echo view('templates/t2_header', $data);
+            echo view('templates/header', $data);
             echo view('home');
-            echo view('templates/t2_footer');
+            echo view('templates/footer');
         }
     }
 

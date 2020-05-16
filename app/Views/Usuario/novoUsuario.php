@@ -23,7 +23,7 @@ echo form_open(base_url('usuario/criarusuario'),'enctype="multipart/form-data"')
 
 
             <label class="label mr-2">Avatar</label>
-            <input class="form-control" type="file" name="avatar" id="upload">
+            <input class="form-control" onclick="miniatura_foto('#upload','#prev')" type="file" name="avatar" id="upload">
 
 
             <div class="form-group mt-3">
@@ -41,16 +41,4 @@ echo form_open(base_url('usuario/criarusuario'),'enctype="multipart/form-data"')
     </div>
 </div>
 <?php echo form_close(); ?>
-:
-<script !src="">
-    $(function () { /*cria miniatura da imagem*/
-        $('#upload').change(function () {
-            const file = $(this)[0].files[0]
-            const fielder = new FileReader()
-            fielder.onloadend = function () {
-                $('#prev').attr('src', fielder.result)
-            }
-            fielder.readAsDataURL(file)
-        })
-    });
-</script>
+

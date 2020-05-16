@@ -2,82 +2,59 @@
 <html>
 
 <head>
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title><?php echo $title ?></title>
+    <link rel="stylesheet"
+          href="<?php echo base_url('tema_assets/bootstrap/css/bootstrap.min.css') ?>?h=3ad8d4903859dcd5bc61764098e977e6">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title><?= $title ?></title>
-
-    <link href="<?php echo base_url('css/sidebar/main.css') ?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url('/css/googleapis.css/') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('/css/estilo.css/') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('/css/bootstrap.css/') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('/css/bootstrap.min.css/') ?>">
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <!-- JAVASCRIPT-->
-    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-
-    <!-- JAVASCRIPT-->
 </head>
 
-<body id="corpo" >
+<body>
 
-<header class="header-fixed">
+<nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container"><a class="navbar-brand" href="index.html">LogoMarca</a>
+        <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i
+                    class="fa fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
 
-    <div class="header-limiter">
+                <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<?php echo base_url('home') ?>"><i
+                                class="fa fa-home"></i>&nbspInício</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="about.html"><i
+                                class="fa fa-address-card"></i>&nbspSobre nós</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="contact.html"><i
+                                class="fa fa-envelope"></i>&nbspFale conosco</a></li>
 
-        <h1><a href="<?= base_url('home') ?>">Sistema de <span>Notícias</span></a></h1>
+                <!--  Área visivel quando está logado -->
+                <?php if (isset($_SESSION['id_user'])) {
+                    echo view('pages/area_logado');
+                } else { ?>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="<?php echo base_url('login') ?>">
+                            <i class="fa fa-user"></i>&nbspLogin
+                        </a>
+                    </li>
+                <?php } ?>
+                <!--  Área visivel quando está logado -->
 
-        <nav>
-
-            <a href="<?= base_url('home') ?>">HomeBlog</a>
-            <a href="<?= base_url('sobre') ?>">About</a>
-            <a href="#">Faq</a>
-            <a href="<?= base_url('contato') ?>">Contact</a>
-            <a href="<?= base_url('noticias') ?>">Área restrita</a>
-            <!--<a href="<? /*= base_url('usuario/logout') */ ?>" onclick="confirma("sair")">-->
-            <?php if (isset($_SESSION['id'])) { ?>
-
-                <?php
-                helper('html');
-                $onclick = array('onclick' => "return confirm('Confirma saída?')");
-                echo anchor(base_url('usuario/logout'), 'Logout ' .
-                    '<small>' . '[' . $_SESSION['nome'] . ']' . '</small>'
-                    . img(['src' => base_url('/imgs/session_open.png'),
-                        'id' => 'img_session']), $onclick);
-            } else {
-                helper('html');
-                ?>
-                <?php
-
-                echo anchor(base_url('usuario/login'), 'Login ' .
-                    img(['src' => base_url('/imgs/session_close.png'),
-                        'id' => 'img_session'
-                    ])); ?>
-                <script onload="tiraFundo()">
-
-                </script>
-
-            <?php }
-            ?>
-        </nav>
-
+            </ul>
+        </div>
     </div>
+</nav>
+<?php
+if ($title == 'Início' || substr($title, 0, 7) == 'Busca [') {
+    echo view('pages/home_header');
+} else {
+    echo view('pages/post_header');
+}
 
-
-</header>
-
-<!-- You need this element to prevent the content of the page from jumping up -->
-
-
-<div class="container card bg-white  mt-3 " id="div_principal_home">
-
-
-
-
-
-
-
-        <!-- The content of your page would go here. -->
+?>

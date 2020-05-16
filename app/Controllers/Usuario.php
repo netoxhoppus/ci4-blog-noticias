@@ -64,9 +64,10 @@ class Usuario extends Controller {
                 'nome' => $this->request->getVar('nome'),
                 'avatar' => $img->uploadImg('/imgs/users/avatar/', 'avatar'),
                 'sobre' => $this->request->getVar('sobre'),
-                'id_perfil' => $this->request->getVar('perfil'),
+                'id_perfil' => $this->request->getVar('perfil')
             ];
             if ($this->usuarioModel->store($data)) {
+                //unlink($_SERVER['DOCUMENT_ROOT'].$data['id_perfil']);//apaga a imagem
                 echo 'SALVOU';
             } else {
                 echo 'NÃO SALVOU';
@@ -127,7 +128,6 @@ class Usuario extends Controller {
         echo view('templates/login_header', $data);
         echo view('usuario/login');
         echo view('templates/login_footer');
-
 
     }
 

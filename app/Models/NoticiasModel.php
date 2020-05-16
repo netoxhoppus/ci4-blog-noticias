@@ -13,12 +13,14 @@ class NoticiasModel extends Model {
     protected $validationRules = [
         'title' => 'required|min_length[5]|max_length[255]',
         'subtitle' => 'required|min_length[10]',
-        'body' => 'required|min_length[100]'];
+        'body' => 'required|min_length[100]'
+        ];
 
     protected $validationMessages = [
         'title' => ['required' => 'Campo título obrigatorio', 'min_length' => 'O campo título deve ter ao menos 5 caracteres'],
         'subtitle' => ['required' => 'Campo subtítulo  obrigatorio', 'min_length' => 'O campo subtítulo deve ter ao menos 10 caracteres'],
         'body' => ['required' => 'Campo notícia obrigatorio', 'min_length' => 'O campo notícia deve ter ao menos 100 caracteres']
+        //'capa'=>['required' => 'Campo notícia obrigatorio']
     ];
 
     protected $skipValidation = false;
@@ -48,7 +50,15 @@ class NoticiasModel extends Model {
     }
 
     public function apagar($id = null) {
-        return $this->delete($id);
+        $caminho = $this->db->query('SELECT img_capa FROM noticia WHERE id_news = ?', $id)->getResult('array')[0]['img_capa'];
+        if ($this->delete($id)){
+            if ($caminho != '/imgs/noticias/capa/default/default.png'){
+                unlink($_SERVER['DOCUMENT_ROOT'] . $caminho);//apaga a imagem antiga se nao for a default
+            }
+            return true;
+        }
+        return false;
+
     }
 
 }

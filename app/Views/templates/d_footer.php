@@ -1,13 +1,12 @@
-                </div> <!--fim da div principal -->
-            </div> <!--div row-->
-        </div> <!--div container-->
-    </main>
+</div> <!--fim da div principal -->
+</div> <!--div row-->
+</div> <!--div container-->
+</main>
 </div>
 
 
-
 <!--MODAL DE CONFIRMAçÃO -->
-                <?php echo view('modais/modal_confirm');?>
+<?php echo view('modais/modal_confirm'); ?>
 <!--FIM DO MODAL-->
 
 <!-- using online scripts -->
@@ -21,6 +20,9 @@
 <script src="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 <!-- using local scripts -->
 <script src="<?php echo base_url('sidebar/js/main.js') ?>"></script>
+
+
+
 </body>
 
 </html>

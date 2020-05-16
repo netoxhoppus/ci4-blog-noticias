@@ -29,17 +29,14 @@ class Noticias extends Controller {
             return;
         }
 
-
         $data = [
             'news' => $this->noticiasModel->get()->paginate(5),
             'title' => 'Notícias arquivadas',
             'pager' => $this->noticiasModel->pager
         ];
-        //echo view('templates/header', $data);
         echo view('templates/d_header', $data);
         echo view('pages/overview');
         echo view('templates/d_footer');
-        //echo view('templates/footer');
     }
 
     public function ver($slug = null) {
@@ -48,12 +45,14 @@ class Noticias extends Controller {
             'news' => $this->noticiasModel->getNews($slug)
         ];
 
+
         if (empty($data['news'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Cannot find the news item: ' . $slug);
         }
         $data['title'] = $data['news']['title'];
+
         echo view('templates/header', $data);
-        echo view('noticias/ver', $data);
+        echo view('noticias/ver');
         echo view('templates/footer');
     }
 
@@ -83,39 +82,55 @@ class Noticias extends Controller {
         ];
         echo view('templates/d_header', $data);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $img = new Imagem();
             $data = [
                 'id_news' => $this->request->getVar('id_news'),
                 'title' => $this->request->getVar('title'),
                 'subtitle' => $this->request->getVar('subtitle'),
                 'slug' => url_title($this->slugify($this->request->getVar('title')), "-", false),
                 'body' => $this->request->getVar('body'),
-                'data_criacao' => date('Y-m-d H:i:s'),
-                'id_autor' => $_SESSION['id_user'],
-                'img_capa ' => $img->uploadImg('/imgs/noticias/capa/', 'capa'),
-
+                'id_autor' => $_SESSION['id_user']
             ];
-            if (!$this->noticiasModel->store($data)) {
+
+            $img = new Imagem();
+            if (!$this->noticiasModel->store($data)) {//se falhou
+                if (!empty($_FILES['capa']['name'])) {//enviou imagem
+                    $imagem = $img->uploadImg('/imgs/noticias/capa/', 'capa');
+                    unlink($_SERVER['DOCUMENT_ROOT'] . $imagem);//apaga a imagem q seria inserida
+                }
                 $data = [
-                    'errors' => $this->noticiasModel->errors(),
+                    'errors' => $this->noticiasModel->errors()
                 ];
                 $this->sessao->setFlashdata($data);
                 return redirect()->back()->withInput();
 
-            } else if ($data['id_news']) {
-                echo view('noticias/success', $data = ['acao' => 'Notícia editada']);
-                echo view('templates/d_footer');
-                return;
-            } else {
-                echo view('noticias/success', $data = ['acao' => 'Notícia criada']);
-                echo view('templates/d_footer');
-                return;
-            }
-        }
+            } else if ($data['id_news']) {//edição da noticia
+                if (!empty($_FILES['capa']['name'])) {//enviou
+                    $imagem = $img->uploadImg('/imgs/noticias/capa/', 'capa');
+                    $caminho = $this->noticiasModel->db->query('SELECT img_capa FROM noticia WHERE id_news = ?', $data['id_news'])->getResult('array')[0]['img_capa'];
 
+                    if ($caminho != '/imgs/noticias/capa/default/default.png'){//pra nao apagar a imagem default
+                        unlink($_SERVER['DOCUMENT_ROOT'] . $this->noticiasModel->db->query('SELECT img_capa FROM noticia WHERE id_news = ?', $data['id_news']
+                            )->getResult('array')[0]['img_capa']);//apaga a imagem antiga
+                    }
+
+                    $this->noticiasModel->db->query('UPDATE noticia SET img_capa = ? WHERE id_news = ?', [$imagem, $data['id_news']]);//atualiza pra nova
+                }
+                echo view('noticias/success', $data = ['acao' => 'Notícia editada']);
+            } else {//criaçao da noticia
+                if (empty($_FILES['capa']['name'])) {//nao enviou
+                    $imagem = '/imgs/noticias/capa/default/default.png'; //define a imagem default
+                } else {
+                    $imagem = $img->uploadImg('/imgs/noticias/capa/', 'capa');
+                }
+                $this->noticiasModel->db->query('UPDATE noticia SET img_capa = ? WHERE slug = ?', [$imagem, $data['slug']]);/* atuliza a imagem*/
+                $this->noticiasModel->db->query('UPDATE noticia SET data_criacao = ? WHERE slug = ?', [date('Y-m-d H:i:s'), $data['slug']]);/* atuliza a data*/
+                echo view('noticias/success', $data = ['acao' => 'Notícia criada']);
+            }
+            echo view('templates/d_footer');
+            return;
+        }
         echo view('noticias/criar', $data);
         echo view('templates/d_footer');
-
     }
 
     public function getAutor($id_autor = null) {

@@ -17,9 +17,12 @@
     <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
     <!--    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
     -->
-    <script src="https://cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
+   <script src="<?php echo base_url('ckeditor/ckeditor.js') ?>"></script>
+   <script src="<?php echo base_url('ckfinder/ckfinder.js') ?>"></script>
 
-
+<!-- <script src="https://cdn.ckeditor.com/4.14.0/full/ckeditor.js"></script>
+-->
+    <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
     <!-- using local links -->
     <link rel="stylesheet" href="<?php echo base_url('sidebar/css/main.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('sidebar/css/sidebar-themes.css') ?>">
@@ -46,7 +49,6 @@
             <!-- sidebar-header  -->
             <div class="sidebar-item sidebar-header d-flex flex-nowrap">
                 <div class="user-pic">
-                    <?php echo isset($new['title']) ? $new['title'] : old('title') ?>
 
                     <img  class="img-responsive img-rounded" src="<?php echo base_url($_SESSION['avatar'])?>"
                          alt="User picture">
