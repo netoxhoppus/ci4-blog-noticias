@@ -40,7 +40,6 @@ $routes->match(['get', 'post'], 'noticias/criar', 'Noticias::criar');
 $routes->match(['get', 'post'], 'noticias/buscar', 'Noticias::buscar');
 $routes->match(['get', 'post'], 'buscar', 'Home::buscar');
 
-$routes->get('usuario', 'Usuario::index');
 $routes->get('usuario/logout', 'Usuario::logout');
 $routes->get('usuario/listarusuarios', 'Usuario::listarUsuarios');
 $routes->get('usuario/criarusuario', 'Usuario::criarUsuario');

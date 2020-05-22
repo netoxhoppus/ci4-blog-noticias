@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\UsuarioModel;
-use CodeIgniter\CodeIgniter;
 use \CodeIgniter\Config\Services;
 use CodeIgniter\Controller;
 
@@ -90,9 +89,7 @@ class Usuario extends Controller {
     function login() {
         if ($this->checkSession()) {
             echo view('templates/d_header', $data = ['title' => 'Bem vindo']);
-            echo 'Bem vindo ' . $_SESSION['nome'] . '<br><br>';
-
-            echo anchor(base_url('noticias'), '<< Área de notícias');
+            echo view('usuario/welcome');
             echo view('templates/d_footer');
             return;
         }
@@ -143,12 +140,14 @@ class Usuario extends Controller {
 
     //--------------------------------------------------------------------
 
-    private
-    function setSession($data = null) {
+    private function setSession($data = null) {
         $sessionData = [
             'id_user' => $data['id_user'],
             'nome' => $data['nome'],
-            'avatar' => $data['avatar']
+            'avatar' => $data['avatar'],
+            'sobre' => $data['sobre'],
+            'email' => $data['email'],
+            'username' => $data['username']
         ];
 
         $this->sessao->set($sessionData);
@@ -156,15 +155,13 @@ class Usuario extends Controller {
 
     //--------------------------------------------------------------------
 
-    public
-    function checkSession() {
+    public function checkSession() {
         return $this->sessao->has('id_user');
     }
 
     //--------------------------------------------------------------------
 
-    public
-    function logout() {
+    public function logout() {
         $this->controlaAcesso();
         $this->sessao->destroy();
         return redirect()->to(base_url('home'));
