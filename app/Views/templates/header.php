@@ -13,6 +13,17 @@
     <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Metas facebook -->
+    <meta property="og:url" content="<?php echo current_url() ?>"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="<?php echo $title ?>"/>
+    <?php if (isset($news)) { ?>
+        <meta property="og:image" content="<?php echo base_url($news['img_capa']) ?>"/>
+        <meta property="og:description" content="<?php echo $news['subtitle'] ?>"/>
+
+        <meta property="fb:app_id" content="277132203471512" />
+    <?php } ?>
+
 
 </head>
 

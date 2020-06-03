@@ -15,9 +15,9 @@ class Teste extends Controller {
 
     public function index() {
         $data = ['title' => 'teste'];
-        echo view('templates/t2_header', $data);
-        echo view('teste');
-        echo view('templates/t2_footer');
+        //echo view('templates/d_header', $data);
+        echo view('templates/share_button/botoes');//share_button/botoes.php
+        //echo view('templates/d_footer');
     }
 
 }

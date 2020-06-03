@@ -32,6 +32,7 @@
 </head>
 
 <body style="background: url('<?php echo base_url('sidebar/img/bg-geral.png') ?>')">
+<?php $usuarioObj = new \App\Controllers\Usuario();?>
 
 <!-- Page Content -->
 
@@ -42,22 +43,24 @@
             <!-- sidebar-brand  -->
 
             <div class="sidebar-item sidebar-brand">
-
-                <a href="#">pro sidebar</a>
-
-            </div>
+                <a href="#">Dashboard</a>
+                    <a id="oculta-sidebar" class="btn btn-outline-secondary p-1 btn-sm rounded-0 float-right" href="#">
+                        <span class="fa fa-angle-left mr-1"></span>
+                    </a>
+              </div>
             <!-- sidebar-header  -->
             <div class="sidebar-item sidebar-header d-flex flex-nowrap">
                 <div class="user-pic">
 
-                    <img  class="img-responsive img-rounded" src="<?php echo base_url($_SESSION['avatar'])?>"
+                    <img  class="img-responsive img-rounded" src="<?php  echo isset($_SESSION['id_user']) ? $_SESSION['avatar'] : 'null'?>"
                          alt="User picture">
                 </div>
                 <div class="user-info">
                         <span class="user-name">
-                            <strong><?php echo $_SESSION['nome'] ?></strong>
+                            <strong><?php  echo isset($_SESSION['id_user']) ? $_SESSION['nome'] : 'off'?></strong>
                         </span>
-                    <span class="user-role">Administrator</span>
+
+                    <span class="user-role"><?php echo $usuarioObj->getTipoDoPerfil($_SESSION['id_perfil'])[0]['tipo'] ?></span>
                     <span class="user-status">
                             <i class="fa fa-circle"></i>
                             <span>Online</span>
@@ -117,20 +120,20 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li class="sidebar-item">
-                                    <a href="<?php echo base_url('#') ?>">
+                                    <a href="<?php echo base_url('usuario/profile') ?>">
                                         <i class="fas fa-user-alt"></i>
                                         <span class="menu-text">Meu perfil</span>
                                     </a>
                                 </li>
 
-                                <li class="sidebar-item">
+                                <li class="sidebar-item"  <?php echo !$usuarioObj->ehAdmin() ? 'hidden' : ''; ?>>
                                     <a href="<?php echo base_url('usuario/listarusuarios') ?>">
                                         <i class="fa fa-list-ol"></i>
                                         <span class="menu-text">Listar</span>
                                     </a>
                                 </li>
 
-                                <li class="sidebar-item">
+                                <li class="sidebar-item"  <?php echo !$usuarioObj->ehAdmin() ? 'hidden' : ''; ?>>
                                     <a href="<?php echo base_url('usuario/criarusuario') ?>">
                                         <i class="fa fa-plus-circle"></i>
                                         <span class="menu-text">Criar</span>
@@ -218,7 +221,7 @@
 
         <!--Botoes toggle e pin    -->
         <div class="row float-left mt-2">
-            <div class=" col-md-12">
+            <div id="ocultar" class=" col-md-12">
                 <a id="toggle-sidebar" class="btn btn-outline-secondary p-1 btn-sm rounded-0" href="#">
                     <span class="fa fa-angle-left mr-1"></span>
                 </a><br>

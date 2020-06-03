@@ -34,9 +34,23 @@ jQuery(function ($) {
 
     });
 
+    //toggle sidebar no celular
+    $("#oculta-sidebar").click(function () {
+        $(".page-wrapper").toggleClass("toggled");
+        $("#ocultar").show();
+
+    });
+
+
     //toggle sidebar
     $("#toggle-sidebar").click(function () {
         $(".page-wrapper").toggleClass("toggled");
+        $("#ocultar").hide();
+        var element = document.getElementById('toggle-sidebar');
+        /*element[0].setAttribute('type', 'hidden');*/
+
+
+        console.log(element);
     });
     //Pin sidebar
     $("#pin-sidebar").click(function () {

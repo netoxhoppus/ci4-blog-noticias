@@ -93,10 +93,7 @@ class Noticias extends Controller {
 
             $img = new Imagem();
             if (!$this->noticiasModel->store($data)) {//se falhou
-                if (!empty($_FILES['capa']['name'])) {//enviou imagem
-                    $imagem = $img->uploadImg('/imgs/noticias/capa/', 'capa');
-                    unlink($_SERVER['DOCUMENT_ROOT'] . $imagem);//apaga a imagem q seria inserida
-                }
+
                 $data = [
                     'errors' => $this->noticiasModel->errors()
                 ];
