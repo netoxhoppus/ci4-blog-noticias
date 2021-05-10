@@ -41,6 +41,6 @@ Executando assim o sistema estará rodando no [link LOCAL da aplicação](http:/
 
 Caso queira ver o sistema rodando online, acesse o [Link ONLINE da aplicação](http://blogdenoticias.cf/) 
 
-O acesso ao dashboard se dá pelo:
-Login: netox
+O acesso ao dashboard se dá pelo:  
+Login: netox  
 Senha: 1q2w3e
