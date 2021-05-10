@@ -17,11 +17,11 @@ As configurações do banco deverão estar no arquivo `.env` que pode ser obtido
 
 No nosso caso a parte referente a senha e nome do banco está assim:
 
-database.default.hostname = localhost
-database.default.database = ci4database
-database.default.username = root
-database.default.password = 
-database.default.DBDriver = MySQLi
+database.default.hostname = localhost  
+database.default.database = ci4database  
+database.default.username = root  
+database.default.password =   
+database.default.DBDriver = MySQLi  
 
 
 Esse arquivo não está pronto e deve ser preenchido de acordo com as configurações do seu host.
