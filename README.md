@@ -21,11 +21,11 @@ Esse arquivo deve ser preenchido de acordo com as configurações do seu host.
 
 No nosso caso a parte referente a senha e nome do banco está assim:  
 
-database.default.hostname = localhost
-database.default.database = blog_news
-database.default.username = root
-database.default.password = 
-database.default.DBDriver = MySQLi  
+database.default.hostname = localhost  
+database.default.database = blog_news  
+database.default.username = root  
+database.default.password =   
+database.default.DBDriver = MySQLi    
 
 
 
