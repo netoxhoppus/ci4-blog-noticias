@@ -10,7 +10,7 @@ Todos os arquivos estão hospedados no [repositório do projeto](https://github.
 
 **Banco de dados**  
 
-Após a clonagem do projeto encontramos o script `newsql.sql` no diretório `/ci4-blog-noticias/public/SQL`
+Após a clonagem do projeto encontramos o script `news.sql` no diretório `/ci4-blog-noticias/public/SQL`
 Nesse script temos a codificação completa de `Criação do Banco` , `Criação da tabela` e `População da tabela news` .
 
 As configurações do banco deverão estar no arquivo `.env`.  
