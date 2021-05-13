@@ -137,7 +137,7 @@ class Usuario extends Controller {
 
         }
 
-        echo view('usuario/novousuario');
+        echo view('usuario/novoUsuario');
         echo view('templates/d_footer', $data);
     }
     //--------------------------------------------------------------------

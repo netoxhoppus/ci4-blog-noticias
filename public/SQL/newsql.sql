@@ -76,9 +76,9 @@ INSERT INTO `profile` (`id_profile`, `tipo`) VALUES
 (1, 'Administrador'),
 (2, 'Colunista');
 
-
+/home/netox/git/ci4-blog-noticias/public/imgs/users/avatar/default/default_user.jpg
 INSERT INTO `user` (`id_user`, `username`, `password`, `email`, `nome`, `avatar`, `sobre`, `last_login`, `id_perfil`) VALUES
-(1, 'netox', '8a8c371d507232a432bd30e18bd3ba7b', 'netoxhoppus@gmail.com', 'João Neto', '/imgs/users/avatar/1589343166_2e368e38e9503ff1ed06.jpg', 'Desenvolvedor e administrador desse site.', '2020-05-17 19:52:43', 1);
+(1, 'netox', '8a8c371d507232a432bd30e18bd3ba7b', 'netoxhoppus@gmail.com', 'João Neto', '/imgs/users/avatar/default/default_user.jpg', 'Desenvolvedor e administrador desse site.', '2020-05-17 19:52:43', 1);
 
 
 INSERT INTO `noticia` (`id_news`, `title`, `subtitle`, `slug`, `body`, `data_criacao`, `img_capa`, `id_autor`) VALUES
