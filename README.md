@@ -16,15 +16,15 @@ Nesse script temos a codificação completa de `Criação do Banco` , `Criação
 **Diagrama DER**  
 ![Link ONLINE da aplicação](https://github.com/netoxhoppus/ci4-blog-noticias/blob/master/public/SQL/diagrama.png) 
 
-As configurações do banco deverão estar no arquivo `.env` que pode ser obtido motificando o arquivo `env` na raíz do projeto.
-Esse arquivo não está pronto e deve ser preenchido de acordo com as configurações do seu host.  
+As configurações do banco deverão estar no arquivo `.env`.  
+Esse arquivo deve ser preenchido de acordo com as configurações do seu host.  
 
-No nosso caso a parte referente a senha e nome do banco está assim:
+No nosso caso a parte referente a senha e nome do banco está assim:  
 
-database.default.hostname = localhost  
-database.default.database = ci4database  
-database.default.username = root  
-database.default.password =   
+database.default.hostname = localhost
+database.default.database = blog_news
+database.default.username = root
+database.default.password = 
 database.default.DBDriver = MySQLi  
 
 
