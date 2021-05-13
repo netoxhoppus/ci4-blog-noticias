@@ -13,6 +13,9 @@ Todos os arquivos estão hospedados no [repositório do projeto](https://github.
 Após a clonagem do projeto encontramos o script `newsql.sql` no diretório `/ci4-blog-noticias/public/SQL`
 Nesse script temos a codificação completa de `Criação do Banco` , `Criação da tabela` e `População da tabela news` .
 
+**Diagrama DER**  
+![Link ONLINE da aplicação](https://github.com/netoxhoppus/ci4-blog-noticias/blob/master/public/SQL/diagrama.png) 
+
 As configurações do banco deverão estar no arquivo `.env` que pode ser obtido motificando o arquivo `env` na raíz do projeto.
 Esse arquivo não está pronto e deve ser preenchido de acordo com as configurações do seu host.  
 
@@ -24,8 +27,6 @@ database.default.username = root
 database.default.password =   
 database.default.DBDriver = MySQLi  
 
-**Diagrama DER**  
-![Link ONLINE da aplicação](https://github.com/netoxhoppus/ci4-blog-noticias/blob/master/public/SQL/diagrama.png) 
 
 
 ## Executando no localhost
